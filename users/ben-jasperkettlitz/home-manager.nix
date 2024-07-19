@@ -20,16 +20,15 @@
     inherit (pkgs.texlive) scheme-full tocbibind;
   };
 in {
-  nixpkgs.config.allowUnfreePredicate = pkg:
-    builtins.elem (lib.getName pkg) [
-      "discord"
-    ];
+  # nixpkgs.config.allowUnfreePredicate = pkg:
+  #   builtins.elem (lib.getName pkg) [
+  #     "discord"
+  #     "vscode"
+  #   ];
+  #
   home = {
     # Don't change this when you change package input. Leave it alone.
     stateVersion = "23.05";
-    # specify my home-manager configs
-
-    xdg.enable = true;
 
     # --- [ Programs ] ---
     packages = with pkgs;
@@ -67,7 +66,7 @@ in {
         languagetool # needed by grammarous
 
         # -- o -- [ Linter ] --
-        markdownlint # markdown
+        # markdownlint # markdown
         vale # prose
         proselint # prose
         luaformatter # lua
@@ -154,18 +153,21 @@ in {
     '';
   };
 
-  xdg.configFile =
-    {
-      "i3/config".text = builtins.readFile ./i3;
-      "rofi/config.rasi".text = builtins.readFile ./rofi;
-    }
-    // (
-      if isLinux
-      then {
-        "ghostty/config".text = builtins.readFile ./dotfiles/ghostty.linux;
+  xdg = {
+    enable = true;
+    configFile =
+      {
+        "i3/config".text = builtins.readFile ./dotfiles/i3;
+        "rofi/config.rasi".text = builtins.readFile ./dotfiles/rofi;
       }
-      else {}
-    );
+      // (
+        if isLinux
+        then {
+          "ghostty/config".text = builtins.readFile ./dotfiles/ghostty.linux;
+        }
+        else {}
+      );
+  };
 
   programs = {
     bat = {

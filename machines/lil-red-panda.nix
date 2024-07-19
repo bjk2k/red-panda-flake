@@ -8,6 +8,11 @@
   # We install Nix using a separate installer so we don't want nix-darwin
   # to manage it for us. This tells nix-darwin to just use whatever is running.
   nix.useDaemon = true;
+  # fix see https://github.com/NixOS/nix/issues/6499
+  services.nix-daemon.enable = true;
+
+  # needed for e.g. discord and vscode
+  nixpkgs.config.allowUnfree = true;
 
   # Keep in async with vm-shared.nix. (todo: pull this out into a file)
   nix = {
@@ -22,14 +27,6 @@
       keep-outputs = true
       keep-derivations = true
     '';
-
-    # public binary cache that I use for all my derivations. You can keep
-    # this, use your own, or toss it. Its typically safe to use a binary cache
-    # since the data inside is checksummed.
-    settings = {
-      substituters = ["https://mitchellh-nixos-config.cachix.org"];
-      trusted-public-keys = ["mitchellh-nixos-config.cachix.org-1:bjEbXJyLrL1HZZHBbO4QALnI5faYZppzkU4D2s0G8RQ="];
-    };
   };
 
   programs = {
@@ -48,7 +45,7 @@
   };
 
   environment = {
-    shells = with pkgs; [bashInteractive zsh fish];
+    shells = with pkgs; [bashInteractive zsh];
     systemPackages = with pkgs; [
       cachix
     ];

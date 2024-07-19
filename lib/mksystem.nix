@@ -2,7 +2,6 @@
 # particular architecture.
 {
   nixpkgs,
-  overlays,
   inputs,
 }: name: {
   system,
@@ -48,7 +47,6 @@ in
           users.${user} = import userHMConfig {
             inputs = inputs;
             name = "${user}";
-            home = "/Users/${user}";
           };
         };
       }

@@ -12,7 +12,7 @@
 
     home-manager = {
       # Manages configs links things into your home directory
-      url = "github:nix-community/home-manager/master";
+      url = "github:nix-community/home-manager/release-24.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -43,12 +43,12 @@
   in {
     nixosConfigurations.vm-aarch64-utm = mkSystem "vm-aarch64-utm" rec {
       system = "aarch64-linux";
-      user = "ben-jasperkettiltz";
+      user = "ben-jasperkettlitz";
     };
 
-    darwinConfigurations.macbook-pro-m1 = mkSystem "lil-red-panda" {
+    darwinConfigurations.lil-red-panda = mkSystem "lil-red-panda" {
       system = "aarch64-darwin";
-      user = "ben-jasperkettiltz";
+      user = "ben-jasperkettlitz";
       darwin = true;
     };
   };
