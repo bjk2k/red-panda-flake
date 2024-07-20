@@ -1,8 +1,4 @@
 # Connectivity info for Linux VM
-NIXADDR ?= unset
-NIXPORT ?= 22
-NIXUSER ?= ben-jasperkettlitz
-
 # Get the path to this Makefile and directory
 MAKEFILE_DIR := $(patsubst %/,%,$(dir $(abspath $(lastword $(MAKEFILE_LIST)))))
 
@@ -26,7 +22,7 @@ endif
 
 test:
 ifeq ($(UNAME), Darwin)
-	nix build ".#darwinConfigurations.${NIXNAME}.system"
+	nix build ".#${NIXNAME}"
 	./result/sw/bin/darwin-rebuild test --flake "$$(pwd)#${NIXNAME}"
 else
 	sudo NIXPKGS_ALLOW_UNSUPPORTED_SYSTEM=1 nixos-rebuild test --flake ".#$(NIXNAME)"

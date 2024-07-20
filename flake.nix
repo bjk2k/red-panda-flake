@@ -28,28 +28,37 @@
 
     # custom icons
     darwin-custom-icons.url = "github:ryanccn/nix-darwin-custom-icons";
+
+    flake-parts.url = "github:hercules-ci/flake-parts";
   };
 
-  outputs = {
-    self,
-    nixpkgs,
-    home-manager,
-    darwin,
-    ...
-  } @ inputs: let
-    mkSystem = import ./lib/mksystem.nix {
-      inherit nixpkgs inputs;
+  outputs = {flake-parts, ...} @ inputs:
+    flake-parts.lib.mkFlake {inherit inputs;} {
+      flake = {
+        # Put your original flake attributes here.
+      };
+      systems = [
+        # systems for which you want to build the `perSystem` attributes
+        "aarch64-darwin"
+        "aarch64-linux"
+        # ...
+      ];
+      perSystem = {
+        config,
+        system,
+        ...
+      }: {
+        _module.args.pkgs = import inputs.nixpkgs {
+          inherit system;
+          config = {
+            allowUnfree = true;
+          };
+        };
+        imports = [
+          ./users
+          ./hosts
+          ./modules
+        ];
+      };
     };
-  in {
-    nixosConfigurations.vm-aarch64-utm = mkSystem "vm-aarch64-utm" rec {
-      system = "aarch64-linux";
-      user = "ben-jasperkettlitz";
-    };
-
-    darwinConfigurations.lil-red-panda = mkSystem "lil-red-panda" {
-      system = "aarch64-darwin";
-      user = "ben-jasperkettlitz";
-      darwin = true;
-    };
-  };
 }

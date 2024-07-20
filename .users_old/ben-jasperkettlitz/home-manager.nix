@@ -111,6 +111,9 @@ in {
 
         # --- [ VM  ] ---
         utm
+
+        # --- [ University  ] ---
+        anki-bin
       ]
       ++ (lib.optionals isDarwin [
         # MAC-only packages
@@ -191,11 +194,9 @@ in {
       autosuggestion.enable = true;
       syntaxHighlighting.enable = true;
       shellAliases = {
-        l = "ls --color=auto --classify=auto";
-        ls = "ls --color=auto --classify=auto";
+        l = "ls --color=auto";
+        ls = "ls --color=auto";
         nv = "nvim";
-        nixswitch = "darwin-rebuild switch --flake ~/src/red-panda-sys-config/.#";
-        nixup = "pushd ~/src/system-config; nix flake update; nixswitch; popd";
       };
     };
 
