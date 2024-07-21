@@ -123,7 +123,7 @@ in {
       theme = "Kanagawa_dragon";
       # Catppuccin-Frappe Catppuccin-Latte Catppuccin-Macchiato Catppuccin-Mocha
       extraConfig = ''
-        hide_window_decorations yes
+        hide_window_decorations titlebar-only
       '';
     };
 
