@@ -3,8 +3,8 @@
     common.imports = [
       ./terminal
       ./tmux
-      ./home.nix
       ./common.nix
+      ./users
       ./host_configuration.nix
     ];
     darwin.imports = [

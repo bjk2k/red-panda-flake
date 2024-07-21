@@ -1,9 +1,13 @@
 # configuration that is common for all targets and users
-{config, ...}: {
+{
+  config,
+  inputs',
+  ...
+}: {
   nix = {
     # configureBuildUsers = true;
     settings = {
-      trusted-users = ["root" config.my.username];
+      trusted-users = ["root" config.people.myself];
     };
     # Avoid unwanted garbage collection when using nix-direnv
     extraOptions = ''
@@ -27,6 +31,9 @@
       allowUnsupportedSystem = true;
     };
     overlays = [
+      (_final: _prev: {
+        stable = inputs'.nixpkgs-stable.legacyPackages;
+      })
       (import ../packages)
     ];
   };

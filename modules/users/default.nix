@@ -37,6 +37,7 @@ in {
       type = peopleSubmodule;
     };
   };
+
   config = {
     people = import ./config.nix;
   };

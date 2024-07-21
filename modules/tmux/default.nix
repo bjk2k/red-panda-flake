@@ -5,6 +5,7 @@
   ...
 }: let
   cfg = config.modules.tmux;
+  currentUser = config.people.myself;
 
   # we need to import the scripts for the sesseioniser
   tmux-sessioniser = pkgs.writeShellScriptBin "tmux-sessioniser" (builtins.readFile ./tmux-sessioniser);
@@ -23,7 +24,7 @@ in
     };
 
     config = mkIf cfg.enable {
-      home-manager.users.${config.my.username} = {
+      home-manager.users.${currentUser} = {
         home = {
           packages = [
             # and add custom scripts as packages

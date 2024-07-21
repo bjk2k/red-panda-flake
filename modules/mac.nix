@@ -7,11 +7,36 @@
 }:
 with pkgs.stdenv;
 with lib; let
-  currentSystemName = "";
+  currentUser = config.people.myself;
+  currentSystemName = config.my.hostname;
 in {
   imports = [
     inputs.home-manager.darwinModules.home-manager
   ];
+
+  # --- [ FONTS ] ---
+
+  # fonts.fonts = [(pkgs.nerdfonts.override {fonts = ["Meslo"];})];
+  fonts.packages = with pkgs; [
+    (nerdfonts.override {
+      fonts = [
+        "CascadiaCode"
+        "CodeNewRoman"
+        "FantasqueSansMono"
+        "Iosevka"
+        "ShareTechMono"
+        "Hermit"
+        "JetBrainsMono"
+        "FiraCode"
+        "FiraMono"
+        "Hack"
+        "Hasklig"
+        "Ubuntu"
+        "UbuntuMono"
+      ];
+    })
+  ];
+
   # We install Nix using a separate installer so we don't want nix-darwin
   # to manage it for us. This tells nix-darwin to just use whatever is running.
   nix.useDaemon = true;
@@ -51,6 +76,18 @@ in {
     };
   };
 
+  users.users.${currentUser} = {
+    shell = pgs.zsh;
+    home = "/Users/${currentUser}";
+  };
+
+  home-manager = {
+    backupFileExtension = "backup";
+    useGlobalPkgs = true;
+    useUserPackages = false;
+    users.${currentUser} = import ./home.nix {inherit inputs pkgs lib config;};
+  };
+
   environment = {
     shells = with pkgs; [bashInteractive zsh];
     systemPackages = with pkgs; [
@@ -84,11 +121,11 @@ in {
           "${pkgs.kitty}/Applications/Kitty.app/"
         ];
         persistent-others = [
-          "/Users/${currentSystemUser}/"
-          "/Users/${currentSystemUser}/personal"
-          "/Users/${currentSystemUser}/projects"
-          "/Users/${currentSystemUser}/work"
-          "/Users/${currentSystemUser}/Downloads"
+          "/Users/${currentUser}/"
+          "/Users/${currentUser}/personal"
+          "/Users/${currentUser}/projects"
+          "/Users/${currentUser}/work"
+          "/Users/${currentUser}/Downloads"
         ];
         show-recents = false; # Do not show recent applications
       };
@@ -112,7 +149,6 @@ in {
       # disabled, caused only problems!
       swapLeftCommandAndLeftAlt = false;
     };
-
     # backwards compat; don't change
     stateVersion = 4;
   };

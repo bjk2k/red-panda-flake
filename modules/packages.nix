@@ -75,9 +75,6 @@ with pkgs; [
   # --- [ PYTHON ] ---
   poetry
 
-  # --- [ LATEX ] ---
-  tex
-
   # --- [ University  ] ---
   anki-bin
 ]

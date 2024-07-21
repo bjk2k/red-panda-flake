@@ -5,20 +5,20 @@
     # Pin our primary nixpkgs repository. This is the main nixpkgs repository
     # we'll use for our configurations. Be very careful changing this because
     # it'll impact your entire system.
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
 
-    # We use the unstable nixpkgs repo for some packages.
-    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-24.05";
+    nixpkgs-master.url = "github:nixos/nixpkgs/master";
+    nixpkgs.url = "nixpkgs/nixos-unstable";
 
     home-manager = {
       # Manages configs links things into your home directory
-      url = "github:nix-community/home-manager/release-24.05";
+      url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    darwin = {
+    nix-darwin = {
       # Controls system level software and settings including fonts
-      url = "github:lnl7/nix-darwin";
+      url = "github:Lnl7/nix-darwin";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -28,20 +28,24 @@
 
     # custom icons
     darwin-custom-icons.url = "github:ryanccn/nix-darwin-custom-icons";
+    nur.url = "github:nix-community/NUR";
 
-    flake-parts.url = "github:hercules-ci/flake-parts";
+    flake-utils.url = "github:numtide/flake-utils";
+    flake-parts = {
+      url = "github:hercules-ci/flake-parts";
+      inputs.nixpkgs-lib.follows = "nixpkgs";
+    };
   };
 
   outputs = {flake-parts, ...} @ inputs:
     flake-parts.lib.mkFlake {inherit inputs;} {
-      flake = {
-        # Put your original flake attributes here.
-      };
       systems = [
-        # systems for which you want to build the `perSystem` attributes
         "aarch64-darwin"
         "aarch64-linux"
-        # ...
+      ];
+      imports = [
+        ./hosts
+        ./modules
       ];
       perSystem = {
         config,
@@ -54,11 +58,6 @@
             allowUnfree = true;
           };
         };
-        imports = [
-          ./users
-          ./hosts
-          ./modules
-        ];
       };
     };
 }

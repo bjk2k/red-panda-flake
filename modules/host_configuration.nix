@@ -12,8 +12,7 @@ with lib; let
 in {
   options = {
     my = {
-      hostname = mkOptStr "yuan-mac";
-      homeDirectory = mkOptStr "/Users/yuanwang";
+      hostname = mkOptStr "lil-red-panda";
     };
   };
 }

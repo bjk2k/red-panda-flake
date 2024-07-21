@@ -7,7 +7,7 @@
 }: let
   currentUser = config.people.myself;
   manpager = pkgs.writeShellScriptBin "manpager" (
-    if lib.optionals pkgs.stdenvNoCC.isDarwin
+    if pkgs.stdenvNoCC.isDarwin
     then ''
       sh -c 'col -bx | bat -l man -p'
     ''
@@ -36,18 +36,9 @@ in {
 
     # -- [ File System ] --
     file = {
-      "red-panda-scripts".source =
-        config.lib.file.mkOutOfStoreSymlink ./red-panda-scripts;
-      "red-panda-scripts".recursive = true;
       ".inputrc".source = ./dotfiles/inputrc;
       ".gdbinit".source = ./dotfiles/gdbinit;
     };
-
-    activation.name = lib.hm.dag.entryAfter ["writeBoundary"] ''
-      run mkdir -p personal $VERBOSE_ARG
-      run mkdir -p projects $VERBOSE_ARG
-      run mkdir -p work $VERBOSE_ARG
-    '';
   };
 
   xdg = {
@@ -87,8 +78,8 @@ in {
     git = {
       enable = true;
       package = pkgs.gitAndTools.gitFull;
-      userName = config.people.${currentUser}.name;
-      userEmail = config.people.${currentUser}.email;
+      userName = config.people.users.${currentUser}.name;
+      userEmail = config.people.users.${currentUser}.email;
       aliases = {
         # common aliases
         br = "branch";

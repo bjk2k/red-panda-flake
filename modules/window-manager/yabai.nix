@@ -22,11 +22,6 @@ in {
   };
   config = mkMerge [
     (mkIf cfg.enable {
-      fonts.packages = with pkgs; [
-        font-hack-nerd-font
-        sf-symbols
-      ];
-
       services.skhd = {
         enable = true;
         skhdConfig = ''
@@ -88,7 +83,7 @@ in {
     })
     (
       mkIf cfg.enableJankyborders {
-        home-manager.users.${config.my.username} = {
+        home-manager.users.${config.people.myself} = {
           xdg.configFile = {
             "borders/bordersrc".source = ./bordersrc;
           };

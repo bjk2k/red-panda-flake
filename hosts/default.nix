@@ -5,8 +5,10 @@
   ...
 }: {
   flake = {
+    nixosConfigurations = {};
     darwinConfigurations = {
       lil-red-panda = withSystem "aarch64-darwin" ({
+        self',
         config,
         inputs',
         system,
@@ -19,7 +21,7 @@
             nurNoPkg = import inputs.nur {
               nurpkgs = import inputs.nixpkgs {system = system;};
             };
-            packages = config.packages;
+            inherit (config) packages;
             inherit inputs inputs';
           };
 
