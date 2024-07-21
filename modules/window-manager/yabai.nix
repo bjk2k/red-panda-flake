@@ -11,7 +11,7 @@
 with lib; let
   # to escape $ propertly, config uses that create fsspace
   cfg = config.modules.window-manager.yabai;
-  moveConfig = builtins.readFile ./skhdrc;
+  keybindingConfiguration = builtins.readFile ./skhdrc;
 in {
   options.modules.window-manager.yabai = {
     enable = mkEnableOption "yabai";
@@ -22,6 +22,13 @@ in {
   };
   config = mkMerge [
     (mkIf cfg.enable {
+      # --- [ Fonts ] ---
+      fonts.packages = with pkgs; [
+        # --- [ Fira Code ] ---
+        sketchybar-app-font
+        sf-symbols
+      ];
+
       home-manager.users.${config.people.myself} = {
         xdg.configFile."sketchybar".source = ./sketchybar;
       };
@@ -31,7 +38,7 @@ in {
           enable = true;
           skhdConfig = ''
             # movement configurations
-            ${moveConfig}
+            ${keybindingConfiguration}
           '';
         };
 
@@ -65,7 +72,7 @@ in {
             mouse_action1 = "move";
             mouse_action2 = "resize";
             layout = "bsp";
-            top_padding = 45;
+            top_padding = 50;
             bottom_padding = 10;
             left_padding = 10;
             right_padding = 10;
