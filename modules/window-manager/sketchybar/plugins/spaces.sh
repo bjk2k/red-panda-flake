@@ -1,15 +1,29 @@
-#!/usr/local/bin/bash
+#!/bin/bash
 
-# The $SELECTED variable is available for space components and indicates if
-# the space invoking this script (with name: $NAME) is currently selected:
-# https://felixkratz.github.io/SketchyBar/config/components#space----associate-mission-control-spaces-with-an-item
+update() {
+  UPDATED_COLOR=0xffdcd7ba  
+  if [ "$SELECTED" = "true" ]; then
+    UPDATED_COLOR=0xffff9e3b
+  fi
+  sketchybar --set "$NAME" icon.highlight="$SELECTED" \
+    label.highlight="$SELECTED" \
+    background.border_color="$UPDATED_COLOR"
+}
 
-#sketchybar --set "$NAME" background.drawing="$SELECTED"
+mouse_clicked() {
+  if [ "$BUTTON" = "right" ]; then
+    yabai -m space --destroy "$SID"
+    sketchybar --trigger windows_on_spaces --trigger space_change
+  else
+    yabai -m space --focus "$SID" 2>/dev/null
+  fi
+}
 
-# source "$HOME/.config/sketchybar/colors.sh"
-
-if [ $SELECTED = 'true' ]; then
-	sketchybar --set "$NAME" background.color=0xffff9e3b
-else
-	sketchybar --set "$NAME" background.color=0xff9cabca
-fi
+case "$SENDER" in
+"mouse.clicked")
+  mouse_clicked
+  ;;
+*)
+  update
+  ;;
+esac
