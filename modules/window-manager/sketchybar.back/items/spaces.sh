@@ -25,13 +25,13 @@ for i in "${!SPACE_ICONS[@]}"; do
     padding_left=2
     padding_right=2
     label.padding_right=20
-    icon.highlight_color="$RED"
-    label.color="$SECONTARY_COLOR"
+    icon.highlight_color="$ACCENT_COLOR"
+    label.color="$SECONDARY_COLOR"
     label.highlight_color="$ACCENT_COLOR"
     label.font="sketchybar-app-font:Regular:16.0"
     label.y_offset=-1
     background.color="$DARK_BG"
-    background.border_color="$DARK_BG"
+    background.border_color="$WHITE"
     background.drawing=off
     label.drawing=off
     script="$PLUGIN_DIR/spaces.sh"

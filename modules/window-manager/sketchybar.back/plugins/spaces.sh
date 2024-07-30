@@ -3,7 +3,7 @@
 update() {
   UPDATED_COLOR=0xffdcd7ba  
   if [ "$SELECTED" = "true" ]; then
-    UPDATED_COLOR=0xffff9e3b
+    UPDATED_COLOR=0xffffffff
   fi
   sketchybar --set "$NAME" icon.highlight="$SELECTED" \
     label.highlight="$SELECTED" \

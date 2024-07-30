@@ -94,6 +94,11 @@ in {
             yabai -m config window_opacity on
             yabai -m config active_window_opacity 1.0
             yabai -m config normal_window_opacity 0.9
+
+            # sreens
+            shift + ctrl + alt - s: screencapture -ic
+            shift + ctrl + alt - i: screencapture -i /tmp/$(date +%s).png
+            cmd - space: app-launcher
           '';
         };
       };

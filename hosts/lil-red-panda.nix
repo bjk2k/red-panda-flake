@@ -49,7 +49,9 @@
         "steam"
         "motion"
       ];
-      brews = [];
+      brews = [
+        "nowplaying-cli"
+      ];
     };
     tmux = {
       enable = true;
