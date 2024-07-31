@@ -1,0 +1,3 @@
+[submodule "modules/window-manager/sketchybar"]
+	path = modules/window-manager/sketchybar
+	url = git@github.com:bjk2k/sketchybar.git
