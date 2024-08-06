@@ -12,6 +12,19 @@ with lib; let
   # to escape $ propertly, config uses that create fsspace
   cfg = config.modules.window-manager.yabai;
   keybindingConfiguration = builtins.readFile ./skhdrc;
+
+  sketchybarConfigLua = pkgs.callPackage ./sketchybar {};
+
+  sbarLua = pkgs.callPackage ./sketchybar/helpers/sbar.nix {};
+
+  lua = pkgs.lua54Packages.lua.withPackages (ps: [
+    ps.lua
+    sbarLua
+    sketchybarConfigLua
+  ]);
+
+  sbar_menus = pkgs.callPackage ./sketchybar/helpers/menus {};
+  sbar_events = pkgs.callPackage ./sketchybar/helpers/event_providers {};
 in {
   options.modules.window-manager.yabai = {
     enable = mkEnableOption "yabai";
@@ -45,9 +58,20 @@ in {
         # --- [ SketchyBar ] ---
         sketchybar = {
           extraPackages = [
+            sbar_menus
+            sbar_events
+            lua
             pkgs.ripgrep
+            pkgs.sbarlua
+            pkgs.lua5_4
           ];
           enable = true;
+
+          config = ''
+            #!${lua}/bin/lua
+                    package.cpath = package.cpath .. ";${lua}/lib/?.so"
+                    require("init")
+          '';
         };
 
         # --- [ YABAI ] ---

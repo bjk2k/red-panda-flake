@@ -11,6 +11,7 @@
       ./window-manager/yabai.nix
       ./brew.nix
       ./mac.nix
+      ./podman
     ];
   };
 }

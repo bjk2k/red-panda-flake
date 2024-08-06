@@ -40,6 +40,7 @@
   };
 
   modules = {
+    podman.enable = true;
     brew = {
       enable = true;
       casks = [

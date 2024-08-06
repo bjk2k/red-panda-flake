@@ -22,7 +22,7 @@ endif
 
 test:
 ifeq ($(UNAME), Darwin)
-	nix build ".#${NIXNAME}"
+	nix build ".#${NIXNAME}" --show-trace
 	./result/sw/bin/darwin-rebuild test --flake "$$(pwd)#${NIXNAME}"
 else
 	sudo NIXPKGS_ALLOW_UNSUPPORTED_SYSTEM=1 nixos-rebuild test --flake ".#$(NIXNAME)"
