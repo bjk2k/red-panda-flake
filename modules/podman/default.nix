@@ -30,6 +30,7 @@ in
       environment = {
         systemPackages = [
           pkgs.podman
+          pkgs.vfkit
           qemu
           pkgs.xz
 

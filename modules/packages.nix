@@ -15,6 +15,7 @@ with pkgs; [
   fastfetch
 
   fzy
+  jq
 
   # --- [ Editors ] ---
 
@@ -77,4 +78,6 @@ with pkgs; [
 
   # --- [ University  ] ---
   anki-bin
+
+  vfkit
 ]
