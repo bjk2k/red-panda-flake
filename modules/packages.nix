@@ -40,8 +40,7 @@ with pkgs; [
   vale # prose
   proselint # prose
   luaformatter # lua
-  prisma-engines # schema.prisma files
-  statix # nix
+  statix # nixrsrsrs
   shellcheck
   ruff # python linter used by null-ls
 
@@ -57,7 +56,6 @@ with pkgs; [
   rustfmt
 
   # -- o -- [ LSP Node Packages] --
-  nodePackages.prisma
   nodePackages.svelte-language-server
   nodePackages.diagnostic-languageserver
   nodePackages.typescript-language-server

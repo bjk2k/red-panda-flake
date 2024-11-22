@@ -27,7 +27,7 @@
   nixpkgs = {
     config = {
       allowUnfree = true;
-      allowBroken = false;
+      allowBroken = true;
       allowUnsupportedSystem = true;
     };
     overlays = [

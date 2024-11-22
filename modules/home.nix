@@ -18,7 +18,7 @@
 in {
   home = {
     # Don't change this when you change package input. Leave it alone.
-    stateVersion = "23.05";
+    stateVersion = "24.05";
     packages =
       import ./packages.nix {inherit pkgs inputs;}
       ++ lib.optionals pkgs.stdenvNoCC.isDarwin

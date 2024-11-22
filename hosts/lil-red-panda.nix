@@ -34,6 +34,7 @@
     };
     home.activation.name = lib.hm.dag.entryAfter ["writeBoundary"] ''
       run mkdir -p personal $VERBOSE_ARG
+      run mkdir -p personal/orgfiles $VERBOSE_ARG
       run mkdir -p projects $VERBOSE_ARG
       run mkdir -p work $VERBOSE_ARG
     '';
@@ -49,9 +50,12 @@
         "nvidia-geforce-now"
         "steam"
         "motion"
+        "github"
+        "whisky"
       ];
       brews = [
         "nowplaying-cli"
+        "kaitai-struct-compiler"
       ];
     };
     tmux = {

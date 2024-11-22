@@ -21,6 +21,7 @@ in {
     (nerdfonts.override {
       fonts = [
         "CascadiaCode"
+        "NerdFontsSymbolsOnly"
         "CodeNewRoman"
         "FantasqueSansMono"
         "Iosevka"
@@ -45,6 +46,7 @@ in {
 
   # needed for e.g. discord and vscode
   nixpkgs.config.allowUnfree = true;
+  nixpkgs.config.allowBroken = true;
 
   # Keep in async with vm-shared.nix. (todo: pull this out into a file)
   nix = {
@@ -77,7 +79,7 @@ in {
   };
 
   users.users.${currentUser} = {
-    shell = pgs.zsh;
+    shell = pkgs.zsh;
     home = "/Users/${currentUser}";
   };
 

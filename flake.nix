@@ -9,10 +9,11 @@
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-24.05";
     nixpkgs-master.url = "github:nixos/nixpkgs/master";
     nixpkgs.url = "nixpkgs/nixos-unstable";
+    # nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
 
     home-manager = {
       # Manages configs links things into your home directory
-      url = "github:nix-community/home-manager/master";
+      url = "github:nix-community/home-manager/release-24.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -56,6 +57,7 @@
           inherit system;
           config = {
             allowUnfree = true;
+            allowBroken = true;
           };
         };
       };
