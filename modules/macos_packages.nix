@@ -7,5 +7,7 @@ in [
   # alerter
   # -- [ Latex ] --
   tex
+
   tailscale
+  zed-editor
 ]

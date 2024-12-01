@@ -43,6 +43,7 @@ with pkgs; [
   statix # nixrsrsrs
   shellcheck
   ruff # python linter used by null-ls
+  nixfmt
 
   nodePackages.eslint_d # js/ts
   nodePackages.prettier # js/ts
@@ -78,6 +79,7 @@ with pkgs; [
   anki-bin
 
   vfkit
+  neovide
 
   # --- [ Zig  ] ---
   inputs.zig.packages.${pkgs.system}.master
