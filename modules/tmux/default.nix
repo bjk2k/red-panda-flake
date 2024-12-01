@@ -73,6 +73,7 @@ in
             ];
             extraConfig = ''
               bind-key -r f run-shell "tmux neww tmux-sessioniser"
+              set-option -g default-command zsh
             '';
           };
         };

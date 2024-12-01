@@ -78,4 +78,7 @@ with pkgs; [
   anki-bin
 
   vfkit
+
+  # --- [ Zig  ] ---
+  inputs.zig.packages.${pkgs.system}.master
 ]

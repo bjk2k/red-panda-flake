@@ -13,7 +13,7 @@
 
     home-manager = {
       # Manages configs links things into your home directory
-      url = "github:nix-community/home-manager/release-24.05";
+      url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -36,6 +36,9 @@
       url = "github:hercules-ci/flake-parts";
       inputs.nixpkgs-lib.follows = "nixpkgs";
     };
+
+    zig.url = "github:mitchellh/zig-overlay";
+
   };
 
   outputs = {flake-parts, ...} @ inputs:

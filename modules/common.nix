@@ -34,6 +34,12 @@
       (_final: _prev: {
         stable = inputs'.nixpkgs-stable.legacyPackages;
       })
+      
+      # apply zig-overlay from inputs
+      (_final: _prev: {
+        zig = inputs'.zig.overlay;
+      })
+
       (import ../packages)
     ];
   };

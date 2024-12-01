@@ -18,10 +18,11 @@
 in {
   home = {
     # Don't change this when you change package input. Leave it alone.
-    stateVersion = "24.05";
+    stateVersion = "23.05";
     packages =
       import ./packages.nix {inherit pkgs inputs;}
       ++ lib.optionals pkgs.stdenvNoCC.isDarwin
+
       (import ./macos_packages.nix {inherit pkgs;});
 
     sessionVariables = {
