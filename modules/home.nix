@@ -1,29 +1,20 @@
-{
-  pkgs,
-  lib,
-  config,
-  inputs,
-  ...
-}: let
+{ pkgs, lib, config, inputs, ... }:
+let
   currentUser = config.people.myself;
-  manpager = pkgs.writeShellScriptBin "manpager" (
-    if pkgs.stdenvNoCC.isDarwin
-    then ''
+  manpager = pkgs.writeShellScriptBin "manpager"
+    (if pkgs.stdenvNoCC.isDarwin then ''
       sh -c 'col -bx | bat -l man -p'
-    ''
-    else ''
+    '' else ''
       cat "$1" | col -bx | bat --language man --style plain
-    ''
-  );
+    '');
 in {
   home = {
     # Don't change this when you change package input. Leave it alone.
     stateVersion = "23.05";
-    packages =
-      import ./packages.nix {inherit pkgs inputs;}
+    packages = import ./packages.nix { inherit pkgs inputs; }
       ++ lib.optionals pkgs.stdenvNoCC.isDarwin
 
-      (import ./macos_packages.nix {inherit pkgs;});
+      (import ./macos_packages.nix { inherit pkgs; });
 
     sessionVariables = {
       LANG = "en_US.UTF-8";
@@ -42,9 +33,7 @@ in {
     };
   };
 
-  xdg = {
-    enable = true;
-  };
+  xdg = { enable = true; };
 
   programs = {
     bat = {
@@ -52,7 +41,7 @@ in {
       config.theme = "TwoDark";
     };
 
-    home-manager = {enable = true;};
+    home-manager = { enable = true; };
 
     fzf = {
       enable = true;
@@ -73,13 +62,14 @@ in {
         l = "ls --color=auto";
         ls = "ls --color=auto";
         nv = "nvim";
+        neo = "neovide --frame transparent";
       };
     };
 
     direnv = {
       enable = true;
       enableZshIntegration = true;
-      nix-direnv = {enable = true;};
+      nix-direnv = { enable = true; };
     };
 
     git = {
@@ -92,8 +82,10 @@ in {
         br = "branch";
         co = "checkout";
         st = "status";
-        ls = "log --pretty=format:\"%C(yellow)%h%Cred%d\\\\ %Creset%s%Cblue\\\\ [%cn]\" --decorate";
-        ll = "log --pretty=format:\"%C(yellow)%h%Cred%d\\\\ %Creset%s%Cblue\\\\ [%cn]\" --decorate --numstat";
+        ls = ''
+          log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate'';
+        ll = ''
+          log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat'';
         cm = "commit -m";
         ca = "commit -am";
         dc = "diff --cached";
@@ -114,20 +106,19 @@ in {
       };
     };
 
+    lazygit = { enable = true; };
+
     zoxide = {
       enable = true;
       enableZshIntegration = true;
-      options = [
-        "--cmd cd"
-      ];
+      options = [ "--cmd cd" ];
     };
 
     kitty = {
       enable = true;
-      font = {
-        name = "Cascadia Code Nerd Font";
-      };
-      theme = "Kanagawa_dragon";
+      font = { name = "Cascadia Code Nerd Font"; };
+      # theme = "Kanagawa_dragon";
+      themeFile = "nord";
       # Catppuccin-Frappe Catppuccin-Latte Catppuccin-Macchiato Catppuccin-Mocha
       extraConfig = ''
         hide_window_decorations titlebar-only
@@ -141,7 +132,7 @@ in {
       enableBashIntegration = true;
       enableZshIntegration = true;
       git = true;
-      icons = true;
+      icons = "auto";
     };
 
     # skim provides a single executable: sk.
@@ -149,6 +140,17 @@ in {
     skim = {
       enable = true;
       enableBashIntegration = true;
+    };
+
+    neovide = {
+      enable = true;
+      settings = {
+        frame = "transparent";
+        fork = true;
+        title-hidden = true;
+
+      };
+
     };
 
     vscode = {
@@ -178,15 +180,12 @@ in {
 
           # Markdown
           yzhang.markdown-all-in-one
-        ]
-        ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
-          {
-            name = "kanagawa-black";
-            publisher = "lamarcke";
-            version = "1.0.5";
-            sha256 = "sha256-YDw3tbOSg3k/Sff/GPheb0rK84cPq3Bs3eIJDEBj2j0=";
-          }
-        ];
+        ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [{
+          name = "kanagawa-black";
+          publisher = "lamarcke";
+          version = "1.0.5";
+          sha256 = "sha256-YDw3tbOSg3k/Sff/GPheb0rK84cPq3Bs3eIJDEBj2j0=";
+        }];
     };
   };
 }

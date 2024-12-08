@@ -68,14 +68,14 @@ for i = 1, 10, 1 do
 
   space:subscribe("space_change", function(env)
     local selected = env.SELECTED == "true"
-    local color = selected and colors.grey or colors.bg2
+    local color = selected and colors.orange or colors.bg2
     space:set({
       icon = { highlight = selected, },
       label = { highlight = selected },
       background = { border_color = selected and colors.black or colors.bg2 }
     })
     space_bracket:set({
-      background = { border_color = selected and colors.grey or colors.bg2 }
+      background = { border_color = selected and colors.orange or colors.bg2 }
     })
   end)
 

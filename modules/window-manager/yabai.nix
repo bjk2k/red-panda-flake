@@ -2,29 +2,22 @@
 # for this we utilise the application yabai and skhd
 # for an optimal exepreience, yabai needs sip disabled
 # Inspired by:
-{
-  config,
-  lib,
-  pkgs,
-  ...
-}:
-with lib; let
+{ config, lib, pkgs, ... }:
+with lib;
+let
   # to escape $ propertly, config uses that create fsspace
   cfg = config.modules.window-manager.yabai;
   keybindingConfiguration = builtins.readFile ./skhdrc;
 
-  sketchybarConfigLua = pkgs.callPackage ./sketchybar {};
+  sketchybarConfigLua = pkgs.callPackage ./sketchybar { };
 
-  sbarLua = pkgs.callPackage ./sketchybar/helpers/sbar.nix {};
+  sbarLua = pkgs.callPackage ./sketchybar/helpers/sbar.nix { };
 
-  lua = pkgs.lua54Packages.lua.withPackages (ps: [
-    ps.lua
-    sbarLua
-    sketchybarConfigLua
-  ]);
+  lua = pkgs.lua54Packages.lua.withPackages
+    (ps: [ ps.lua sbarLua sketchybarConfigLua ]);
 
-  sbar_menus = pkgs.callPackage ./sketchybar/helpers/menus {};
-  sbar_events = pkgs.callPackage ./sketchybar/helpers/event_providers {};
+  sbar_menus = pkgs.callPackage ./sketchybar/helpers/menus { };
+  sbar_events = pkgs.callPackage ./sketchybar/helpers/event_providers { };
 in {
   options.modules.window-manager.yabai = {
     enable = mkEnableOption "yabai";
@@ -100,7 +93,7 @@ in {
             bottom_padding = 10;
             left_padding = 10;
             right_padding = 10;
-            window_gap = 10;
+            window_gap = 0; # 10;
           };
           # https://github.com/koekeishiya/yabai/blob/master/doc/yabai.asciidoc#signal
           # https://felixkratz.github.io/SketchyBar/config/events#triggering-custom-events
@@ -146,27 +139,21 @@ in {
         };
       };
     })
-    (
-      mkIf cfg.enableJankyborders {
-        home-manager.users.${config.people.myself} = {
-          xdg.configFile = {
-            "borders/bordersrc".source = ./bordersrc;
-          };
-        };
-        launchd.user.agents.jankyborders = {
-          path = [
-            pkgs.janky-borders
-          ];
-          serviceConfig = {
-            ProgramArguments = ["${pkgs.janky-borders}/bin/borders"];
+    (mkIf cfg.enableJankyborders {
+      home-manager.users.${config.people.myself} = {
+        xdg.configFile = { "borders/bordersrc".source = ./bordersrc; };
+      };
+      launchd.user.agents.jankyborders = {
+        path = [ pkgs.janky-borders ];
+        serviceConfig = {
+          ProgramArguments = [ "${pkgs.janky-borders}/bin/borders" ];
 
-            KeepAlive = true;
-            RunAtLoad = true;
-            StandardOutPath = "/tmp/borders.log";
-            StandardErrorPath = "/tmp/borders.log";
-          };
+          KeepAlive = true;
+          RunAtLoad = true;
+          StandardOutPath = "/tmp/borders.log";
+          StandardErrorPath = "/tmp/borders.log";
         };
-      }
-    )
+      };
+    })
   ];
 }

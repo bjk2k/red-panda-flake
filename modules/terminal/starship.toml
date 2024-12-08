@@ -1,34 +1,69 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+
+# format = """\
+# [](bg:#030B16 fg:#FF9E3B)\
+# [󰀵 ](bg:#FF9E3B fg:#090c0c)\
+# [](fg:#FF9E3B bg:#C4B28A)\
+# $time\
+# [](fg:#C4B28A bg:#8EA4A2)\
+# $directory\
+# [](fg:#8EA4A2 bg:#C4B28A)\
+# $git_branch\
+# $git_status\
+# $git_metrics\
+# [](fg:#C4B28A bg:#030B16)\
+# $gcloud\
+# """
+
 format = """\
-[](bg:#030B16 fg:#FF9E3B)\
-[󰀵 ](bg:#FF9E3B fg:#090c0c)\
-[](fg:#FF9E3B bg:#C4B28A)\
+[](bg:none fg:nord15)\
+[ ](bg:nord15 fg:nord0)\
+[](fg:nord15 bg:nord10)\
 $time\
-[](fg:#C4B28A bg:#8EA4A2)\
+[](fg:nord10 bg:nord9)\
 $directory\
-[](fg:#8EA4A2 bg:#C4B28A)\
+[](fg:nord9 bg:nord4)\
 $git_branch\
 $git_status\
 $git_metrics\
-[](fg:#C4B28A bg:#030B16)\
+[](fg:nord4 bg:none)\
 $all
 """
 
+palette = 'nord'
+
+[palettes.nord]
+nord0 = '#2E3440'
+nord1 = '#3B4252'
+nord2 = '#434C5E'
+nord3 = '#4C566A'
+nord4 = '#D8DEE9'
+nord7 = '#8FBCBB'
+nord8 = '#88C0D0'
+nord9 = '#81A1C1'
+nord10 = '#5E81AC'
+nord11 = '#BF616A'
+nord13 = '#EBCB8B'
+nord14 = '#A2BE8A'
+nord15 = '#B48EAD'
+bright-white = '#D8DEE9'
+
 [directory]
 format = "[   $path ]($style)"
-style = "fg:#1C3A5E bg:#8EA4A2"
+style = "fg:nord0 bg:nord9"
 
 [git_branch]
 format = '[ $symbol$branch(:$remote_branch) ]($style)'
 symbol = "  "
-style = "fg:#1C3A5E bg:#C4B28A"
+style = "fg:nord0 bg:nord4"
 
 [git_status]
 format = '[$all_status]($style)'
-style = "fg:#1C3A5E bg:#C4B28A"
+style = "fg:nord0 bg:nord4"
 
 [git_metrics]
 format = "([+$added]($added_style))[]($added_style)"
-added_style = "fg:#1C3A5E bg:#C4B28A"
+added_style = "fg:nord0 bg:nord4"
 deleted_style = "fg:bright-red bg:235"
 disabled = false
 
@@ -41,14 +76,14 @@ format = "[  $duration ]($style)"
 style = "fg:bright-white bg:18"
 
 [character]
-success_symbol = '[ ➜](bold green) '
-error_symbol = '[ ✗](#E84D44) '
+success_symbol = '[ ➜](bold nord14) '
+error_symbol = '[ ✗](nord11) '
 
 [time]
 disabled = false
 time_format = "%R" # Hour:Minute Format
-style = "bg:#C4B28A"
-format = '[[ 󱑍 $time ](bg:#C4B28A fg:#1C3A5E)]($style)'
+style = "bg:nord10"
+format = '[[ 󱑍 $time ](bg:nord10 fg:nord0)]($style)'
 
 [aws]
 format = '\[[$symbol($profile)(\($region\))(\[$duration\])]($style)\]'
