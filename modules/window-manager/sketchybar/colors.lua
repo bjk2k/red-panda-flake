@@ -1,56 +1,77 @@
 --
--- [palettes.nord]
--- nord0 = '#2E3440'
--- nord1 = '#3B4252'
--- nord2 = '#434C5E'
--- nord3 = '#4C566A'
--- nord4 = '#D8DEE9'
--- nord7 = '#8FBCBB'
--- nord8 = '#88C0D0'
--- nord9 = '#81A1C1'
--- nor10 = '#5E81AC'
--- nord11 = '#BF616A'
--- nord13 = '#EBCB8B'
--- nord14 = '#A2BE8A'
--- nord15 = '#B48EAD'
--- bright-white = '#D8DEE9'
+--[palettes.rosepine]
+-- base = "#191724"
+-- surface = "#1f1d2e"
+-- overlay = "#26233a"
+-- muted = "#6e6a86"
+-- subtle = "#908caa"
+-- text = "#e0def4"
+-- love = "#eb6f92"
+-- gold = "#f6c177"
+-- rose = "#ebbcba"
+-- pine = "#31748f"
+-- foam = "#9ccfd8"
+-- iris = "#c4a7e7"
+-- highlightlow = "#21202e"
+-- highlightmed = "#403d52"
+-- highlighthigh = "#524f67"
+
+local rose_pine = {
+  base = 0xff191724,
+  surface = 0xff1f1d2e,
+  overlay = 0xff26233a,
+  muted = 0xff6e6a86,
+  subtle = 0xff908caa,
+  text = 0xffe0def4,
+  love = 0xffeb6f92,
+  gold = 0xfff6c177,
+  rose = 0xffebbcba,
+  pine = 0xff31748f,
+  foam = 0xff9ccfd8,
+  iris = 0xffc4a7e7,
+  highlightlow = 0xff21202e,
+  highlightmed = 0xff403d52,
+  highlighthigh = 0xff524f67
+}
+
+
 
 return {
   -- black = 0xff181819, kanagawa
-  black = 0xff2e3440,
+  black = rose_pine.base,
   -- white = 0xffe2e2e3,
   -- white = 0xffdcd7ba, kanagawa
-  white = 0xffd8dee9,
+  white = rose_pine.text,
 
   -- red = 0xfffc5d7c, Kanagawa
-  red = 0xffbf616a,
+  red = rose_pine.love,
   -- green = 0xff9ed072,
-  green = 0xffa2be8a,
+  green = rose_pine.pine,
   -- blue = 0xff76cce0, kanagawa
-  blue = 0xff5e81ac,
-  yellow = 0xffe7c664,
+  blue = rose_pine.foam,
+  yellow = rose_pine.gold,
   -- orange = 0xffff9d3a, kanagawa
-  orange = 0xffebcb8b,
+  orange = rose_pine.gold,
   -- magenta = 0xffb39df3, kanagawa
-  magenta = 0xffb48ead,
+  magenta = rose_pine.love,
   -- grey = 0xff7f8490, kanagawa
-  grey = 0xff4c566a,
+  grey = rose_pine.muted,
   transparent = 0x00000000,
 
   bar = {
     -- bg = 0xf02c2e34,
     -- border = 0xff2c2e34,
-    bg = 0xff2e3440,
-    border = 0xff4c566a
+    bg = rose_pine.base,
+    border = rose_pine.highlightmed,
   },
   popup = {
-    bg = 0xc02c2e34,
-    border = 0xff7f8490
+    bg = rose_pine.base,
+    border = rose_pine.highlightmed,
   },
   -- bg1 = 0xff363944,
   -- bg1 = 0xff181715,
-  bg1 = 0xff2e3440,
-  bg2 = 0xff4c566a,
+  bg1 = rose_pine.surface,
+  bg2 = rose_pine.overlay,
   -- bg2 = 0xff414550,
   -- bg2 = 0Xff8da4a2,
 

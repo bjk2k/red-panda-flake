@@ -16,54 +16,71 @@
 # """
 
 format = """\
-[](bg:none fg:nord15)\
-[ ](bg:nord15 fg:nord0)\
-[](fg:nord15 bg:nord10)\
+[](bg:none fg:love)\
+[ ](bg:love fg:base)\
+[](fg:love bg:rose)\
 $time\
-[](fg:nord10 bg:nord9)\
+[](fg:rose bg:gold)\
 $directory\
-[](fg:nord9 bg:nord4)\
+[](fg:gold bg:rose)\
 $git_branch\
 $git_status\
 $git_metrics\
-[](fg:nord4 bg:none)\
+[](fg:rose bg:none)\
 $all
 """
 
-palette = 'nord'
+palette = 'rosepine'
 
-[palettes.nord]
-nord0 = '#2E3440'
-nord1 = '#3B4252'
-nord2 = '#434C5E'
-nord3 = '#4C566A'
-nord4 = '#D8DEE9'
-nord7 = '#8FBCBB'
-nord8 = '#88C0D0'
-nord9 = '#81A1C1'
-nord10 = '#5E81AC'
-nord11 = '#BF616A'
-nord13 = '#EBCB8B'
-nord14 = '#A2BE8A'
-nord15 = '#B48EAD'
-bright-white = '#D8DEE9'
+[palettes.rosepine]
+base = "#191724"
+surface = "#1f1d2e"
+overlay = "#26233a"
+muted = "#6e6a86"
+subtle = "#908caa"
+text = "#e0def4"
+love = "#eb6f92"
+gold = "#f6c177"
+rose = "#ebbcba"
+pine = "#31748f"
+foam = "#9ccfd8"
+iris = "#c4a7e7"
+highlightlow = "#21202e"
+highlightmed = "#403d52"
+highlighthigh = "#524f67"
 
+# [palettes.nord]
+# base = '#2E3440'
+# nord1 = '#3B4252'
+# nord2 = '#434C5E'
+# nord3 = '#4C566A'
+# muted = '#D8DEE9'
+# nord7 = '#8FBCBB'
+# nord8 = '#88C0D0'
+# iris = '#81A1C1'
+# rose = '#5E81AC'
+# nord11 = '#BF616A'
+# nord13 = '#EBCB8B'
+# nord14 = '#A2BE8A'
+# love = '#B48EAD'
+# bright-white = '#D8DEE9'
+#
 [directory]
 format = "[   $path ]($style)"
-style = "fg:nord0 bg:nord9"
+style = "fg:base bg:gold"
 
 [git_branch]
 format = '[ $symbol$branch(:$remote_branch) ]($style)'
 symbol = "  "
-style = "fg:nord0 bg:nord4"
+style = "fg:base bg:rose"
 
 [git_status]
 format = '[$all_status]($style)'
-style = "fg:nord0 bg:nord4"
+style = "fg:base bg:rose"
 
 [git_metrics]
 format = "([+$added]($added_style))[]($added_style)"
-added_style = "fg:nord0 bg:nord4"
+added_style = "fg:base bg:rose"
 deleted_style = "fg:bright-red bg:235"
 disabled = false
 
@@ -76,14 +93,14 @@ format = "[  $duration ]($style)"
 style = "fg:bright-white bg:18"
 
 [character]
-success_symbol = '[ ➜](bold nord14) '
-error_symbol = '[ ✗](nord11) '
+success_symbol = '[ ➜](bold love) '
+error_symbol = '[ ✗](pine) '
 
 [time]
 disabled = false
 time_format = "%R" # Hour:Minute Format
-style = "bg:nord10"
-format = '[[ 󱑍 $time ](bg:nord10 fg:nord0)]($style)'
+style = "bg:rose"
+format = '[[ 󱑍 $time ](bg:rose fg:base)]($style)'
 
 [aws]
 format = '\[[$symbol($profile)(\($region\))(\[$duration\])]($style)\]'
