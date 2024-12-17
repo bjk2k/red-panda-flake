@@ -16,62 +16,132 @@
 -- highlightmed = "#403d52"
 -- highlighthigh = "#524f67"
 
-local rose_pine = {
-  base = 0xff191724,
-  surface = 0xff1f1d2e,
-  overlay = 0xff26233a,
-  muted = 0xff6e6a86,
-  subtle = 0xff908caa,
-  text = 0xffe0def4,
-  love = 0xffeb6f92,
-  gold = 0xfff6c177,
-  rose = 0xffebbcba,
-  pine = 0xff31748f,
-  foam = 0xff9ccfd8,
-  iris = 0xffc4a7e7,
-  highlightlow = 0xff21202e,
-  highlightmed = 0xff403d52,
-  highlighthigh = 0xff524f67
-}
+
+
+-- # Kanagawa Dragon Colorscheme Palette
+-- [palette]
+-- # Background colors
+-- background = "#1a1a22"
+-- dimmer_background = "#16161d"
+-- lighter_background = "#2b2a33"
+--
+-- # Foreground colors
+-- foreground = "#dcd7ba"
+-- dim_foreground = "#6f7577"
+-- accent_foreground = "#c8c093"
+--
+-- # Primary accent colors
+-- red = "#c34043"
+-- orange = "#ffa066"
+-- yellow = "#dca561"
+-- green = "#76946a"
+-- blue = "#658594"
+-- purple = "#938aa9"
+-- teal = "#6a9589"
+--
+-- # Neutral colors
+-- gray = "#727169"
+-- light_gray = "#c0c0c0"
+-- dark_gray = "#4e4f67"
+--
+-- # Additional tones
+-- wave_blue = "#223249"
+-- storm_gray = "#363646"
+-- peach_orange = "#fa9b61"
+-- autumn_red = "#e82424"
+-- sakura_pink = "#d27e99"
+-- samurai_red = "#d93850"
+-- bright_orange = "#FF9E3B"
+--
+-- instantiate the palette as a local variable
+
+local palette_kanagawa = {  background = 0xff1a1a22,
+                            dimmer_background = 0xff16161d,
+                            lighter_background = 0xff2b2a33,
+                            foreground = 0xffdcd7ba,
+                            dim_foreground = 0xff6f7577,
+                            accent_foreground = 0xffc8c093,
+                            red = 0xffc34043,
+                            orange = 0xffffa066,
+                            yellow = 0xffdca561,
+                            green = 0xff76946a,
+                            blue = 0xff658594,
+                            purple = 0xff938aa9,
+                            teal = 0xff6a9589,
+                            gray = 0xff727169,
+                            light_gray = 0xffc0c0c0,
+                            dark_gray = 0xff4e4f67,
+                            wave_blue = 0xff223249,
+                            storm_gray = 0xff363646,
+                            peach_orange = 0xfffa9b61,
+                            autumn_red = 0xffe82424,
+                            sakura_pink = 0xffd27e99,
+                            samurai_red = 0xffd93850,
+                            bright_orange = 0xffff9e3b
+                          }
+
+
+-- local rose_pine = {
+--   base = 0xff191724,
+--   surface = 0xff1f1d2e,
+--   overlay = 0xff26233a,
+--   muted = 0xff6e6a86,
+--   subtle = 0xff908caa,
+--   text = 0xffe0def4,
+--   love = 0xffeb6f92,
+--   gold = 0xfff6c177,
+--   rose = 0xffebbcba,
+--   pine = 0xff31748f,
+--   foam = 0xff9ccfd8,
+--   iris = 0xffc4a7e7,
+--   highlightlow = 0xff21202e,
+--   highlightmed = 0xff403d52,
+--   highlighthigh = 0xff524f67
+-- }
 
 
 
 return {
   -- black = 0xff181819, kanagawa
-  black = rose_pine.base,
+  -- black = rose_pine.base,
+  black = palette_kanagawa.bakground,
   -- white = 0xffe2e2e3,
   -- white = 0xffdcd7ba, kanagawa
-  white = rose_pine.text,
+  -- white = rose_pine.text,
+  white = palette_kanagawa.foreground,
 
   -- red = 0xfffc5d7c, Kanagawa
-  red = rose_pine.love,
-  -- green = 0xff9ed072,
-  green = rose_pine.pine,
+  red = palette_kanagawa.samurai_red,
+  -- green = 0xff9ed072
+  green = palette_kanagawa.green,
   -- blue = 0xff76cce0, kanagawa
-  blue = rose_pine.foam,
-  yellow = rose_pine.gold,
+  blue = palette_kanagawa.wave_blue,
+  yellow = palette_kanagawa.yellow,
   -- orange = 0xffff9d3a, kanagawa
-  orange = rose_pine.gold,
+  orange = palette_kanagawa.bright_orange,
   -- magenta = 0xffb39df3, kanagawa
-  magenta = rose_pine.love,
+  magenta = palette_kanagawa.sakura_pink,
   -- grey = 0xff7f8490, kanagawa
-  grey = rose_pine.muted,
+  grey = palette_kanagawa.dim_foreground,
   transparent = 0x00000000,
+  
+  highlight_custom = palette_kanagawa.bright_orange,
 
   bar = {
     -- bg = 0xf02c2e34,
     -- border = 0xff2c2e34,
-    bg = rose_pine.base,
-    border = rose_pine.highlightmed,
+    bg = palette_kanagawa.background,
+    border = palette_kanagawa.dimmer_background,
+     
   },
   popup = {
-    bg = rose_pine.base,
-    border = rose_pine.highlightmed,
+    bg = palette_kanagawa.lighter_background,
+    border = palette_kanagawa.dimmer_background,
   },
   -- bg1 = 0xff363944,
   -- bg1 = 0xff181715,
-  bg1 = rose_pine.surface,
-  bg2 = rose_pine.overlay,
+  bg1 = palette_kanagawa.dimmer_background,
+  bg2 = palette_kanagawa.lighter_background,
   -- bg2 = 0xff414550,
   -- bg2 = 0Xff8da4a2,
 

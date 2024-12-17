@@ -116,9 +116,9 @@ in {
 
     kitty = {
       enable = true;
-      font = { name = "Cascadia Code Nerd Font"; };
-      # theme = "Kanagawa_dragon";
-      themeFile = "rose-pine";
+      # font = { name = "Cascadia Code Nerd Font"; };
+      themeFile = "kanagawa_dragon";
+      # themeFile = "rose-pine";
       # Catppuccin-Frappe Catppuccin-Latte Catppuccin-Macchiato Catppuccin-Mocha
       extraConfig = ''
         hide_window_decorations titlebar-only

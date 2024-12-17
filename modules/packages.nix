@@ -1,7 +1,4 @@
-{
-  inputs,
-  pkgs,
-}:
+{ inputs, pkgs, }:
 with pkgs; [
   # --- [ Shell Utilities ] ---
   ripgrep
@@ -74,6 +71,8 @@ with pkgs; [
 
   # --- [ PYTHON ] ---
   poetry
+  devenv
+  uv
 
   # --- [ University  ] ---
   anki-bin

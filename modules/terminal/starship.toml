@@ -15,22 +15,37 @@
 # $gcloud\
 # """
 
+# format = """\
+# [](bg:none fg:love)\
+# [ ](bg:love fg:base)\
+# [](fg:love bg:rose)\
+# $time\
+# [](fg:rose bg:gold)\
+# $directory\
+# [](fg:gold bg:rose)\
+# $git_branch\
+# $git_status\
+# $git_metrics\
+# [](fg:rose bg:none)\
+# $all
+# """
+
 format = """\
-[](bg:none fg:love)\
-[ ](bg:love fg:base)\
-[](fg:love bg:rose)\
+[](bg:none fg:bright_orange)\
+[ ](bg:bright_orange fg:background)\
+[](fg:bright_orange bg:accent_foreground)\
 $time\
-[](fg:rose bg:gold)\
+[](fg:accent_foreground bg:dim_foreground)\
 $directory\
-[](fg:gold bg:rose)\
+[](fg:dim_foreground bg:foreground)\
 $git_branch\
 $git_status\
 $git_metrics\
-[](fg:rose bg:none)\
+[](fg:foreground bg:none)\
 $all
 """
 
-palette = 'rosepine'
+palette = 'kanagawa'
 
 [palettes.rosepine]
 base = "#191724"
@@ -49,38 +64,66 @@ highlightlow = "#21202e"
 highlightmed = "#403d52"
 highlighthigh = "#524f67"
 
-# [palettes.nord]
-# base = '#2E3440'
-# nord1 = '#3B4252'
-# nord2 = '#434C5E'
-# nord3 = '#4C566A'
-# muted = '#D8DEE9'
-# nord7 = '#8FBCBB'
-# nord8 = '#88C0D0'
-# iris = '#81A1C1'
-# rose = '#5E81AC'
-# nord11 = '#BF616A'
-# nord13 = '#EBCB8B'
-# nord14 = '#A2BE8A'
-# love = '#B48EAD'
-# bright-white = '#D8DEE9'
-#
+
+
+# Kanagawa Dragon Colorscheme Palette
+[palettes.kanagawa]
+background = "#1a1a22"
+dimmer_background = "#16161d"
+lighter_background = "#2b2a33"
+foreground = "#dcd7ba"
+dim_foreground = "#6f7577"
+accent_foreground = "#c8c093"
+red = "#c34043"
+orange = "#ffa066"
+bright_orange = "#FF9E3B"
+yellow = "#dca561"
+green = "#76946a"
+blue = "#658594"
+purple = "#938aa9"
+teal = "#6a9589"
+gray = "#727169"
+light_gray = "#c0c0c0"
+dark_gray = "#4e4f67"
+wave_blue = "#223249"
+storm_gray = "#363646"
+peach_orange = "#fa9b61"
+autumn_red = "#e82424"
+sakura_pink = "#d27e99"
+samurai_red = "#d93850"
+
+[palettes.nord]
+base = '#2E3440'
+nord1 = '#3B4252'
+nord2 = '#434C5E'
+nord3 = '#4C566A'
+muted = '#D8DEE9'
+nord7 = '#8FBCBB'
+nord8 = '#88C0D0'
+iris = '#81A1C1'
+rose = '#5E81AC'
+nord11 = '#BF616A'
+nord13 = '#EBCB8B'
+nord14 = '#A2BE8A'
+love = '#B48EAD'
+bright-white = '#D8DEE9'
+
 [directory]
 format = "[   $path ]($style)"
-style = "fg:base bg:gold"
+style = "fg:background bg:dim_foreground"
 
 [git_branch]
 format = '[ $symbol$branch(:$remote_branch) ]($style)'
 symbol = "  "
-style = "fg:base bg:rose"
+style = "fg:background bg:foreground"
 
 [git_status]
 format = '[$all_status]($style)'
-style = "fg:base bg:rose"
+style = "fg:background bg:foreground"
 
 [git_metrics]
 format = "([+$added]($added_style))[]($added_style)"
-added_style = "fg:base bg:rose"
+added_style = "fg:background bg:foreground"
 deleted_style = "fg:bright-red bg:235"
 disabled = false
 
@@ -99,8 +142,8 @@ error_symbol = '[ ✗](pine) '
 [time]
 disabled = false
 time_format = "%R" # Hour:Minute Format
-style = "bg:rose"
-format = '[[ 󱑍 $time ](bg:rose fg:base)]($style)'
+style = "bg:accent_foreground"
+format = '[[ 󱑍 $time ](bg:accent_foreground fg:background)]($style)'
 
 [aws]
 format = '\[[$symbol($profile)(\($region\))(\[$duration\])]($style)\]'
