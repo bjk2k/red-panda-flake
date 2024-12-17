@@ -16,6 +16,8 @@ let
   sbar_menus = pkgs.callPackage ./sketchybar/helpers/menus { };
   sbar_events = pkgs.callPackage ./sketchybar/helpers/event_providers { };
 in {
+  # add the aerospace pkg
+
   options.modules.window-manager.aerospace = {
     enable = mkEnableOption "aerospace";
     enableJankyborders = mkOption {
@@ -33,6 +35,12 @@ in {
       ];
 
       home-manager.users.${config.people.myself} = {
+        home = {
+          packages = [
+            # and add custom scripts as packages
+            tmux-sessioniser
+          ];
+        };
         xdg.configFile."sketchybar".source = ./sketchybar;
         xdg.configFile."aerospace.toml".source = ./aerospace.toml;
       };
