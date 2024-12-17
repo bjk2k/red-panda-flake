@@ -14,7 +14,7 @@ local cal = sbar.add("item", {
     },
   },
   label = {
-    color = colors.highlight_custom,
+    color = colors.white,
     padding_right = 8,
     width = 49,
     align = "right",
@@ -25,9 +25,9 @@ local cal = sbar.add("item", {
   padding_left = 1,
   padding_right = 1,
   background = {
-    color = colors.bg1,
-    border_color = colors.highlight_custom,
-    border_width = 2
+    color = colors.bg2,
+    border_color = colors.black,
+    border_width = 1
   },
 })
 

@@ -14,7 +14,7 @@ for i = 1, 10, 1 do
       padding_left = 15,
       padding_right = 8,
       color = colors.white,
-      highlight_color = colors.orange,
+      highlight_color = colors.red,
     },
     label = {
       padding_right = 20,
@@ -55,8 +55,8 @@ for i = 1, 10, 1 do
 
   local space_popup = sbar.add("item", {
     position = "popup." .. space.name,
-    padding_left = 5,
-    padding_right = 0,
+    padding_left= 5,
+    padding_right= 0,
     background = {
       drawing = true,
       image = {
@@ -68,14 +68,14 @@ for i = 1, 10, 1 do
 
   space:subscribe("space_change", function(env)
     local selected = env.SELECTED == "true"
-    local color = selected and colors.orange or colors.bg2
+    local color = selected and colors.grey or colors.bg2
     space:set({
       icon = { highlight = selected, },
       label = { highlight = selected },
       background = { border_color = selected and colors.black or colors.bg2 }
     })
     space_bracket:set({
-      background = { border_color = selected and colors.orange or colors.bg2 }
+      background = { border_color = selected and colors.grey or colors.bg2 }
     })
   end)
 

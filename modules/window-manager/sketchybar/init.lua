@@ -1,11 +1,5 @@
 -- Require the sketchybar module
---
-
--- Write to logfile /tmp/ketchybar_lua_bjk2k_.log
-os.execute("echo 'sketchybar [in]' >> /tmp/sketchybar_lua_bjk2k_.log")
-
 sbar = require("sketchybar")
-
 
 -- Set the bar name, if you are using another bar instance than sketchybar
 -- sbar.set_bar_name("bottom_bar")

@@ -8,19 +8,18 @@ sbar.add("item", { width = 5 })
 local apple = sbar.add("item", {
   icon = {
     font = { size = 16.0 },
-    color = colors.white,
     string = icons.apple,
     padding_right = 8,
     padding_left = 8,
   },
   label = { drawing = false },
   background = {
-    color = colors.bg1,
-    border_color = colors.highlight_custom,
-    border_width = 2
+    color = colors.bg2,
+    border_color = colors.black,
+    border_width = 1
   },
-  padding_left = 0,
-  padding_right = 0,
+  padding_left = 1,
+  padding_right = 1,
   click_script = "$CONFIG_DIR/helpers/menus/bin/menus -s 0"
 })
 

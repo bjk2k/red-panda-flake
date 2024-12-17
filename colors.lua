@@ -100,28 +100,50 @@ local palette_kanagawa = {  background = 0xff1a1a22,
 -- }
 
 
+
 return {
-  black = palette_kanagawa.background,
+  -- black = 0xff181819, kanagawa
+  -- black = rose_pine.base,
+  black = palette_kanagawa.bakground,
+  -- white = 0xffe2e2e3,
+  -- white = 0xffdcd7ba, kanagawa
+  -- white = rose_pine.text,
   white = palette_kanagawa.foreground,
+
+  -- red = 0xfffc5d7c, Kanagawa
   red = palette_kanagawa.samurai_red,
+  -- green = 0xff9ed072
   green = palette_kanagawa.green,
+  -- blue = 0xff76cce0, kanagawa
   blue = palette_kanagawa.wave_blue,
   yellow = palette_kanagawa.yellow,
+  -- orange = 0xffff9d3a, kanagawa
   orange = palette_kanagawa.bright_orange,
+  -- magenta = 0xffb39df3, kanagawa
   magenta = palette_kanagawa.sakura_pink,
-  grey = palette_kanagawa.storm_gray,
+  -- grey = 0xff7f8490, kanagawa
+  grey = palette_kanagawa.dim_foreground,
   transparent = 0x00000000,
+  
+  highlight_custom = palette_kanagawa.bright_orange,
 
   bar = {
+    -- bg = 0xf02c2e34,
+    -- border = 0xff2c2e34,
     bg = palette_kanagawa.background,
     border = palette_kanagawa.dimmer_background,
+     
   },
   popup = {
     bg = palette_kanagawa.lighter_background,
     border = palette_kanagawa.dimmer_background,
   },
+  -- bg1 = 0xff363944,
+  -- bg1 = 0xff181715,
   bg1 = palette_kanagawa.dimmer_background,
   bg2 = palette_kanagawa.lighter_background,
+  -- bg2 = 0xff414550,
+  -- bg2 = 0Xff8da4a2,
 
   with_alpha = function(color, alpha)
     if alpha > 1.0 or alpha < 0.0 then return color end
