@@ -55,30 +55,32 @@
 --
 -- instantiate the palette as a local variable
 
-local palette_kanagawa = {  background = 0xff1a1a22,
-                            dimmer_background = 0xff16161d,
-                            lighter_background = 0xff2b2a33,
-                            foreground = 0xffdcd7ba,
-                            dim_foreground = 0xff6f7577,
-                            accent_foreground = 0xffc8c093,
-                            red = 0xffc34043,
-                            orange = 0xffffa066,
-                            yellow = 0xffdca561,
-                            green = 0xff76946a,
-                            blue = 0xff658594,
-                            purple = 0xff938aa9,
-                            teal = 0xff6a9589,
-                            gray = 0xff727169,
-                            light_gray = 0xffc0c0c0,
-                            dark_gray = 0xff4e4f67,
-                            wave_blue = 0xff223249,
-                            storm_gray = 0xff363646,
-                            peach_orange = 0xfffa9b61,
-                            autumn_red = 0xffe82424,
-                            sakura_pink = 0xffd27e99,
-                            samurai_red = 0xffd93850,
-                            bright_orange = 0xffff9e3b
-                          }
+local palette_kanagawa = {  
+  background = 0xff1a1a22,
+  dimmer_background = 0xff16161d,
+  lighter_background = 0xff2b2a33,
+  foreground = 0xffdcd7ba,
+  dim_foreground = 0xff6f7577,
+  accent_foreground = 0xffc8c093,
+  red = 0xffc34043,
+  orange = 0xffffa066,
+  yellow = 0xffdca561,
+  green = 0xff76946a,
+  blue = 0xff658594,
+  purple = 0xff938aa9,
+  teal = 0xff6a9589,
+  gray = 0xff727169,
+  light_gray = 0xffc0c0c0,
+  dark_gray = 0xff4e4f67,
+  wave_blue = 0xff223249,
+  storm_gray = 0xff363646,
+  peach_orange = 0xfffa9b61,
+  autumn_red = 0xffe82424,
+  sakura_pink = 0xffd27e99,
+  samurai_red = 0xffd93850,
+  bright_orange = 0xffff9e3b,
+  transparent = 0x00000000
+}
 
 
 -- local rose_pine = {
@@ -130,7 +132,7 @@ return {
   bar = {
     -- bg = 0xf02c2e34,
     -- border = 0xff2c2e34,
-    bg = palette_kanagawa.background,
+    bg = palette_kanagawa.transparent,
     border = palette_kanagawa.dimmer_background,
      
   },

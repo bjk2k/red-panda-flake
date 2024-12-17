@@ -35,14 +35,9 @@ in {
       ];
 
       home-manager.users.${config.people.myself} = {
-        home = {
-          packages = [
-            # and add custom scripts as packages
-            tmux-sessioniser
-          ];
-        };
+        home = { packages = [ pkgs.aerospace ]; };
         xdg.configFile."sketchybar".source = ./sketchybar;
-        xdg.configFile."aerospace.toml".source = ./aerospace.toml;
+        xdg.configFile."aerospace/aerospace.toml".source = ./aerospace.toml;
       };
 
       services = {
