@@ -34,8 +34,6 @@ in {
 
       home-manager.users.${config.people.myself} = {
         xdg.configFile."sketchybar".source = ./sketchybar;
-      };
-      home-manager.users.${config.people.myself} = {
         xdg.configFile."aerospace.toml".source = ./aerospace.toml;
       };
 
