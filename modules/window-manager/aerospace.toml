@@ -29,7 +29,7 @@ inner.horizontal = 6
 inner.vertical =   6
 outer.left =       6
 outer.bottom =     6
-outer.top =        42
+outer.top =        44 # 40 sketchybar + 2 pad bar on top + 2 for gaps
 outer.right =      6
 
 # Main mode bindings
