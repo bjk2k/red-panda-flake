@@ -207,6 +207,7 @@ return {
   ["Thunderbird"] = ":thunderbird:",
   ["Firefox"] = ":firefox:",
   ["WezTerm"] = ":wezterm:",
-  ["Ghostty"] = ":ghostty:",
+  ["Ghostty"] = ":terminal:",
+  ["Beeper"] = ":messages:",
   ["default"] = ":default:",
 }

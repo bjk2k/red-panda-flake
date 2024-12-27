@@ -56,7 +56,8 @@
 -- instantiate the palette as a local variable
 
 local palette_kanagawa = {  
-  background = 0xff1a1a22,
+  -- background = 0xff1a1a22,
+  background = 0xff181616,
   dimmer_background = 0xff16161d,
   lighter_background = 0xff2b2a33,
   foreground = 0xffdcd7ba,
