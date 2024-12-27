@@ -40,7 +40,6 @@ in {
       enable = true;
       config.theme = "TwoDark";
     };
-
     home-manager = { enable = true; };
 
     fzf = {
@@ -107,6 +106,8 @@ in {
     };
 
     lazygit = { enable = true; };
+
+    yazi = { enable = true; };
 
     zoxide = {
       enable = true;

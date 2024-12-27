@@ -82,4 +82,7 @@ with pkgs; [
 
   # --- [ Zig  ] ---
   inputs.zig.packages.${pkgs.system}.master
+
+  # --- [ GhostTTY  ] ---
+  # inputs.ghostty.packages.aarch64-darwin.default
 ]

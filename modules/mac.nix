@@ -162,6 +162,7 @@ in {
           "/Applications/Beeper.app"
           "/System/Applications/Messages.app"
           "${pkgs.kitty}/Applications/Kitty.app/"
+          "/Applications/Ghostty.app"
         ];
         persistent-others = [
           "/Users/${currentUser}/"

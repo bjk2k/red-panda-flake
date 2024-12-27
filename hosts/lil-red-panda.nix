@@ -39,6 +39,7 @@
         "motion"
         "github"
         "whisky"
+        "ghostty"
       ];
       brews = [ "nowplaying-cli" "kaitai-struct-compiler" ];
     };

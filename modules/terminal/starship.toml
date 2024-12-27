@@ -68,7 +68,8 @@ highlighthigh = "#524f67"
 
 # Kanagawa Dragon Colorscheme Palette
 [palettes.kanagawa]
-background = "#1a1a22"
+# background = "#1a1a22"
+background = "#181616"
 dimmer_background = "#16161d"
 lighter_background = "#2b2a33"
 foreground = "#dcd7ba"

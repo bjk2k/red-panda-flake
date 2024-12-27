@@ -43,7 +43,7 @@ outer.right =      6
 [mode.main.binding]
 # Launch applications
 alt-shift-cmd-ctrl-n = 'exec-and-forget open -na "Neovide"'
-alt-shift-cmd-ctrl-t = 'exec-and-forget open -na "Kitty"'
+alt-shift-cmd-ctrl-t = 'exec-and-forget open -na "Ghostty"'
 
 # Window management
 cmd-w = "close"
@@ -122,7 +122,7 @@ if.app-id = 'com.apple.Safari'
 run = 'move-node-to-workspace 2'
 
 [[on-window-detected]]
-if.app-id = 'com.apple.Mail'
+if.app-id = 'com.apple.mail'
 run = 'move-node-to-workspace 5'
 
 [[on-window-detected]]
