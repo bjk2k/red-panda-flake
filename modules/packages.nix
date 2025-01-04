@@ -6,8 +6,8 @@ with pkgs; [
   curl
   zoxide
   less
-  kitty
-  kitty-themes
+  # kitty
+  # kitty-themes
   glab
   fastfetch
 

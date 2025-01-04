@@ -115,16 +115,16 @@ in {
       options = [ "--cmd cd" ];
     };
 
-    kitty = {
-      enable = true;
-      # font = { name = "Cascadia Code Nerd Font"; };
-      themeFile = "kanagawa_dragon";
-      # themeFile = "rose-pine";
-      # Catppuccin-Frappe Catppuccin-Latte Catppuccin-Macchiato Catppuccin-Mocha
-      extraConfig = ''
-        hide_window_decorations titlebar-only
-      '';
-    };
+    # kitty = {
+    #   enable = false;
+    #   # font = { name = "Cascadia Code Nerd Font"; };
+    #   themeFile = "kanagawa_dragon";
+    #   # themeFile = "rose-pine";
+    #   # Catppuccin-Frappe Catppuccin-Latte Catppuccin-Macchiato Catppuccin-Mocha
+    #   extraConfig = ''
+    #     hide_window_decorations titlebar-only
+    #   '';
+    # };
 
     # A modern replacement for ‘ls’
     # useful in bash/zsh prompt, not in nushell.
