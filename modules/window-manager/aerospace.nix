@@ -101,12 +101,17 @@ in {
               alt-shift-cmd-ctrl-j = "focus down";
               alt-shift-cmd-ctrl--k = "focus up";
               alt-shift-cmd-ctrl--l = "focus right";
+              # Focus next monitor
+              alt-shift-cmd-ctrl-y = "focus-monitor next --wrap-around";
 
               # Window movement
               shift-cmd-h = "move left";
               shift-cmd-j = "move down";
               shift-cmd-k = "move up";
               shift-cmd-l = "move right";
+
+              # Window movement to other monitor
+              shift-cmd-y = "move-node-to-monitor next --wrap-around";
 
               # Resize windows
               alt-shift-cmd-ctrl-minus = "resize smart -50";
@@ -168,6 +173,68 @@ in {
             #
             # =================================================================
             # Callbacks
+            on-window-detected = [
+              {
+                "if" = {
+                  app-id = "com.apple.Safari";
+                  during-aerospace-startup = true;
+
+                };
+                check-further-callbacks = false;
+                run = "move-node-to-workspace 2";
+              }
+
+              {
+                "if" = {
+                  app-id = "com.apple.mail";
+                  during-aerospace-startup = true;
+                };
+                check-further-callbacks = false;
+                run = "move-node-to-workspace 5";
+              }
+              {
+                "if" = {
+                  app-id = "com.spotify.client";
+                  during-aerospace-startup = true;
+                };
+                check-further-callbacks = false;
+                run = "move-node-to-workspace 6";
+              }
+              {
+                "if" = {
+                  app-id = "com.mitchellh.ghostty";
+                  during-aerospace-startup = true;
+                };
+                check-further-callbacks = false;
+                run = "move-node-to-workspace 3";
+              }
+              {
+                "if" = {
+                  app-id = "im.beeper";
+                  during-aerospace-startup = true;
+                };
+                check-further-callbacks = false;
+                run = "move-node-to-workspace 5";
+              }
+              {
+                "if" = {
+                  app-id = "com.hnc.Discord";
+                  during-aerospace-startup = true;
+                };
+                check-further-callbacks = false;
+                run = "move-node-to-workspace 5";
+              }
+              {
+                "if" = {
+                  app-id = "com.neovide.neovide";
+                  during-aerospace-startup = true;
+                };
+                check-further-callbacks = false;
+                run = "move-node-to-workspace 1";
+              }
+
+            ];
+
           };
         };
       };
