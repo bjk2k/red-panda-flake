@@ -13,6 +13,7 @@ with pkgs; [
 
   fzy
   jq
+  ghostscript
 
   # --- [ Editors ] ---
 

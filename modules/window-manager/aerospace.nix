@@ -111,7 +111,8 @@ in {
               shift-cmd-l = "move right";
 
               # Window movement to other monitor
-              shift-cmd-y = "move-node-to-monitor next --wrap-around";
+              alt-shift-cmd-h = "move-node-to-monitor left";
+              alt-shift-cmd-l = "move-node-to-monitor right";
 
               # Resize windows
               alt-shift-cmd-ctrl-minus = "resize smart -50";
