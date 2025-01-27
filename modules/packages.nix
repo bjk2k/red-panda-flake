@@ -80,6 +80,8 @@ with pkgs; [
 
   vfkit
   neovide
+  unp
+  rar
 
   # --- [ Zig  ] ---
   inputs.zig.packages.${pkgs.system}.master
