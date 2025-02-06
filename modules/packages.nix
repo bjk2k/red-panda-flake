@@ -75,17 +75,21 @@ with pkgs; [
   devenv
   uv
 
+  # --- [ ZIG  ] ---
+  inputs.zig.packages.${pkgs.system}.master
+
+  # --- [ WRITING  ] ---
+  neovide
+  obsidian
+  hugo
+  dart-sass
+
   # --- [ University  ] ---
   anki-bin
 
   vfkit
-  neovide
+
+  # --- [ Utils  ] ---
   unp
   rar
-
-  # --- [ Zig  ] ---
-  inputs.zig.packages.${pkgs.system}.master
-
-  # --- [ GhostTTY  ] ---
-  # inputs.ghostty.packages.aarch64-darwin.default
 ]
