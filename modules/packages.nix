@@ -12,6 +12,7 @@ with pkgs; [
   fastfetch
 
   fzy
+  television
   jq
   ghostscript
 
