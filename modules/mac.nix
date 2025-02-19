@@ -82,9 +82,6 @@ in {
 
   # We install Nix using a separate installer so we don't want nix-darwin
   # to manage it for us. This tells nix-darwin to just use whatever is running.
-  nix.useDaemon = true;
-  # fix see https://github.com/NixOS/nix/issues/6499
-  services.nix-daemon.enable = true;
 
   # needed for e.g. discord and vscode
   nixpkgs.config.allowUnfree = true;

@@ -154,7 +154,6 @@ in {
       };
 
     };
-
     vscode = {
       enable = true;
       extensions = with pkgs.vscode-extensions;
