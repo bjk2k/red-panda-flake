@@ -24,7 +24,6 @@ with pkgs; [
 
   discord
   spotify
-  keymapp
 
   # -- [ LSP related depenedencies ] --
   alejandra
