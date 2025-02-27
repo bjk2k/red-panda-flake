@@ -23,7 +23,6 @@ with pkgs; [
   # --- [ UI Applications ] ---
 
   discord
-  spotify
 
   # -- [ LSP related depenedencies ] --
   alejandra

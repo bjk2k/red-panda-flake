@@ -10,17 +10,19 @@
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-24.05";
     nixpkgs-master.url = "github:nixos/nixpkgs/master";
     nixpkgs.url = "nixpkgs/nixos-unstable";
-    # nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
+    #nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
 
     home-manager = {
       # Manages configs links things into your home directory
       url = "github:nix-community/home-manager/master";
+      # url = "github:nix-community/home-manager/release-24.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
     nix-darwin = {
       # Controls system level software and settings including fonts
-      url = "github:Lnl7/nix-darwin";
+      # url = "github:Lnl7/nix-darwin/nix-darwin-24.11";
+      url = "github:Lnl7/nix-darwin/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 

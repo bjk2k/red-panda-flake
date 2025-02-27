@@ -193,6 +193,6 @@ in {
       swapLeftCommandAndLeftAlt = false;
     };
     # backwards compat; don't change
-    stateVersion = 4;
+    stateVersion = 5;
   };
 }

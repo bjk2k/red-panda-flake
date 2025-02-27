@@ -74,7 +74,7 @@ in {
     git = {
       enable = true;
       lfs.enable = true;
-      package = pkgs.gitAndTools.gitFull;
+      package = pkgs.git;
       userName = config.people.users.${currentUser}.name;
       userEmail = config.people.users.${currentUser}.email;
       aliases = {
