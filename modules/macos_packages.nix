@@ -9,6 +9,5 @@ in [
   # -- [ Latex ] --
   tex
 
-  tailscale
   zed-editor
 ]
