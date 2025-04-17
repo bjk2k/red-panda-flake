@@ -40,6 +40,7 @@
         "github"
         "whisky"
         "ghostty"
+        "keycastr"
       ];
       brews = [ "nowplaying-cli" "kaitai-struct-compiler" ];
     };

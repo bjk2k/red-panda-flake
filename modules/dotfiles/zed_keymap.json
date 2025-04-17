@@ -1,0 +1,46 @@
+[
+  {
+    "context": "Editor && vim_mode == insert",
+    "bindings": {
+      "j k": ["workspace::SendKeystrokes", "escape"]
+    }
+  },
+  {
+    "context": "VimControl && !menu",
+    "bindings": {
+      "ctrl-j": "terminal_panel::ToggleFocus",
+      // open file
+      ", space": "file_finder::Toggle",
+      // project search
+      ", /": "pane::DeploySearch",
+      ", o": "project_panel::ToggleFocus",
+      // code action
+      ", c a": "editor::ToggleCodeActions",
+      ", c r": "editor::Rename",
+      // show line diagnostics
+      "[ d": "project_panel::SelectNextDiagnostic",
+      "] d": "project_panel::SelectNextDiagnostic",
+      // workspace diagnostics
+      ", s D": "diagnostics::Deploy",
+      ", u D": "editor::ToggleInlineDiagnostics"
+    }
+  },
+  {
+    "context": "ProjectPanel && not_editing",
+    "bindings": {
+      "l": "project_panel::OpenPermanent",
+      ", o": "project_panel::ToggleFocus"
+    }
+  },
+  {
+    "context": "Terminal",
+    "bindings": {
+      "ctrl-n": ["terminal::SendKeystroke", "ctrl-n"],
+      "ctrl-p": ["terminal::SendKeystroke", "ctrl-p"],
+      "ctrl-f": ["terminal::SendKeystroke", "ctrl-f"],
+      "ctrl-b": ["terminal::SendKeystroke", "ctrl-b"],
+      "alt-f": ["terminal::SendKeystroke", "alt-f"],
+      "alt-b": ["terminal::SendKeystroke", "alt-b"]
+    }
+  }
+]

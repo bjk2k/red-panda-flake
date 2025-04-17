@@ -143,6 +143,20 @@ in {
       enable = true;
       enableBashIntegration = true;
     };
+    zed-editor = {
+      enable = true;
+      extensions = [ "nix" "toml" ];
+      userSettings."theme" = {
+        "mode" = "dark";
+        "dark" = "One Dark";
+        "light" = "Solarized Light";
+      };
+
+      userSettings."vim_mode" = true;
+      installRemoteServer = true;
+      userKeymaps =
+        builtins.fromJSON (builtins.readFile ./dotfiles/zed_keymap.json);
+    };
 
     neovide = {
       enable = true;

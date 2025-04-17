@@ -9,5 +9,5 @@ in [
   # -- [ Latex ] --
   tex
 
-  zed-editor
+  # zed-editor
 ]
