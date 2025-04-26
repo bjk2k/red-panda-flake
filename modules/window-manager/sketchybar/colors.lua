@@ -83,6 +83,32 @@ local palette_kanagawa = {
   transparent = 0x00000000,
 }
 
+local palette_github_dark = {
+  background = 0xff0d1117,
+  dimmer_background = 0xff0b0f16,
+  lighter_background = 0xff161b22,
+  foreground = 0xffc9d1d9,
+  dim_foreground = 0xff8b949e,
+  accent_foreground = 0xff58a6ff,
+  red = 0xfff85149,
+  orange = 0xfffd8c73,
+  yellow = 0xfff2cc60,
+  green = 0xff56d364,
+  blue = 0xff58a6ff,
+  purple = 0xffbc8cff,
+  teal = 0xff39c5cf,
+  gray = 0xff6e7681,
+  light_gray = 0xff8b949e,
+  dark_gray = 0xff30363d,
+  wave_blue = 0xff1f6feb,
+  storm_gray = 0xff21262d,
+  peach_orange = 0xffffb86c,
+  autumn_red = 0xffda3633,
+  sakura_pink = 0xffff7b72,
+  samurai_red = 0xffff3c38,
+  bright_orange = 0xffffab70,
+  transparent = 0x00000000,
+}
 
 -- local rose_pine = {
 --   base = 0xff191724,
@@ -102,29 +128,30 @@ local palette_kanagawa = {
 --   highlighthigh = 0xff524f67
 -- }
 
+local current_palette = palette_github_dark
 
 return {
-  black = palette_kanagawa.background,
-  white = palette_kanagawa.foreground,
-  red = palette_kanagawa.samurai_red,
-  green = palette_kanagawa.green,
-  blue = palette_kanagawa.wave_blue,
-  yellow = palette_kanagawa.yellow,
-  orange = palette_kanagawa.bright_orange,
-  magenta = palette_kanagawa.sakura_pink,
-  grey = palette_kanagawa.storm_gray,
+  black = current_palette.background,
+  white = current_palette.foreground,
+  red = current_palette.samurai_red,
+  green = current_palette.green,
+  blue = current_palette.wave_blue,
+  yellow = current_palette.yellow,
+  orange = current_palette.bright_orange,
+  magenta = current_palette.sakura_pink,
+  grey = current_palette.storm_gray,
   transparent = 0x00000000,
 
   bar = {
-    bg = palette_kanagawa.transparent,
-    border = palette_kanagawa.dimmer_background,
+    bg = current_palette.transparent,
+    border = current_palette.dimmer_background,
   },
   popup = {
-    bg = palette_kanagawa.lighter_background,
-    border = palette_kanagawa.dimmer_background,
+    bg = current_palette.lighter_background,
+    border = current_palette.dimmer_background,
   },
-  bg1 = palette_kanagawa.dimmer_background,
-  bg2 = palette_kanagawa.lighter_background,
+  bg1 = current_palette.dimmer_background,
+  bg2 = current_palette.lighter_background,
 
   with_alpha = function(color, alpha)
     if alpha > 1.0 or alpha < 0.0 then return color end

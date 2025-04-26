@@ -9,18 +9,13 @@
     "context": "VimControl && !menu",
     "bindings": {
       "ctrl-j": "terminal_panel::ToggleFocus",
-      // open file
       ", space": "file_finder::Toggle",
-      // project search
       ", /": "pane::DeploySearch",
       ", o": "project_panel::ToggleFocus",
-      // code action
       ", c a": "editor::ToggleCodeActions",
       ", c r": "editor::Rename",
-      // show line diagnostics
       "[ d": "project_panel::SelectNextDiagnostic",
       "] d": "project_panel::SelectNextDiagnostic",
-      // workspace diagnostics
       ", s D": "diagnostics::Deploy",
       ", u D": "editor::ToggleInlineDiagnostics"
     }

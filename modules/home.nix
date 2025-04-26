@@ -145,11 +145,11 @@ in {
     };
     zed-editor = {
       enable = true;
-      extensions = [ "nix" "toml" ];
+      extensions = [ "nix" "toml" "github-theme" "latex" ];
       userSettings."theme" = {
-        "mode" = "dark";
-        "dark" = "One Dark";
-        "light" = "Solarized Light";
+        "mode" = "system";
+        "dark" = "Github Dark";
+        "light" = "Github Light";
       };
 
       userSettings."vim_mode" = true;
@@ -170,7 +170,7 @@ in {
     };
     vscode = {
       enable = true;
-      extensions = with pkgs.vscode-extensions;
+      profiles.default.extensions = with pkgs.vscode-extensions;
         [
           vscodevim.vim
           wakatime.vscode-wakatime

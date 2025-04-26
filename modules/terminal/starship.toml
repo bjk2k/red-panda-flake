@@ -31,9 +31,9 @@
 # """
 
 format = """\
-[](bg:none fg:bright_orange)\
-[ ](bg:bright_orange fg:background)\
-[](fg:bright_orange bg:accent_foreground)\
+[](bg:none fg:accent_pointer)\
+[ ](bg:accent_pointer fg:background)\
+[](fg:accent_pointer bg:accent_foreground)\
 $time\
 [](fg:accent_foreground bg:dim_foreground)\
 $directory\
@@ -45,7 +45,7 @@ $git_metrics\
 $all
 """
 
-palette = 'kanagawa'
+palette = 'github_dark'
 
 [palettes.rosepine]
 base = "#191724"
@@ -65,6 +65,32 @@ highlightmed = "#403d52"
 highlighthigh = "#524f67"
 
 
+# GitHub Dark Theme Colorscheme Palette
+[palettes.github_dark]
+background = "#0d1117"
+dimmer_background = "#0b0f16"
+lighter_background = "#161b22"
+foreground = "#c9d1d9"
+dim_foreground = "#8b949e"
+accent_foreground = "#58a6ff"
+accent_pointer = "#39c5cf"
+red = "#f85149"
+orange = "#fd8c73"
+bright_orange = "#ffab70"
+yellow = "#f2cc60"
+green = "#56d364"
+blue = "#58a6ff"
+purple = "#bc8cff"
+teal = "#39c5cf"
+gray = "#6e7681"
+light_gray = "#8b949e"
+dark_gray = "#30363d"
+wave_blue = "#1f6feb"
+storm_gray = "#21262d"
+peach_orange = "#ffb86c"
+autumn_red = "#da3633"
+sakura_pink = "#ff7b72"
+samurai_red = "#ff3c38"
 
 # Kanagawa Dragon Colorscheme Palette
 [palettes.kanagawa]
@@ -75,6 +101,7 @@ lighter_background = "#2b2a33"
 foreground = "#dcd7ba"
 dim_foreground = "#6f7577"
 accent_foreground = "#c8c093"
+accent_pointer = "#FF9E3B"
 red = "#c34043"
 orange = "#ffa066"
 bright_orange = "#FF9E3B"
