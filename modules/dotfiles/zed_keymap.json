@@ -17,7 +17,8 @@
       "[ d": "project_panel::SelectNextDiagnostic",
       "] d": "project_panel::SelectNextDiagnostic",
       ", s D": "diagnostics::Deploy",
-      ", u D": "editor::ToggleInlineDiagnostics"
+      ", u D": "editor::ToggleInlineDiagnostics",
+      "ctrl-w t": "terminal_panel::ToggleFocus"
     }
   },
   {
@@ -35,7 +36,8 @@
       "ctrl-f": ["terminal::SendKeystroke", "ctrl-f"],
       "ctrl-b": ["terminal::SendKeystroke", "ctrl-b"],
       "alt-f": ["terminal::SendKeystroke", "alt-f"],
-      "alt-b": ["terminal::SendKeystroke", "alt-b"]
+      "alt-b": ["terminal::SendKeystroke", "alt-b"],
+      "ctrl-w t": "terminal_panel::ToggleFocus"
     }
   }
 ]
