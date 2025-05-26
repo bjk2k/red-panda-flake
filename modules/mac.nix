@@ -59,7 +59,6 @@ in {
     nerd-fonts.monofur
     nerd-fonts.monoid
     nerd-fonts.mononoki
-    nerd-fonts.mplus
     nerd-fonts.noto
     nerd-fonts.open-dyslexic
     nerd-fonts.overpass
@@ -139,6 +138,7 @@ in {
     hostName = currentSystemName;
     computerName = currentSystemName;
   };
+
 
   system = {
     defaults.smb.NetBIOSName = currentSystemName;

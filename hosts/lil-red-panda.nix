@@ -27,6 +27,8 @@
     '';
   };
 
+  system.primaryUser = config.people.myself;
+
   modules = {
     podman.enable = true;
     brew = {
