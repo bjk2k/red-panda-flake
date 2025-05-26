@@ -16,6 +16,9 @@ with pkgs; [
   jq
   ghostscript
 
+  # --- [ Nix ] ---
+  nh
+
   # --- [ Editors ] ---
 
   inputs.neve.packages.${system}.default
