@@ -48,7 +48,7 @@
 
   outputs = { flake-parts, ... }@inputs:
     flake-parts.lib.mkFlake { inherit inputs; } {
-      systems = [ "aarch64-darwin" "aarch64-linux" ];
+      systems = [ "aarch64-darwin" "aarch64-linux" "x86_64-darwin" ];
       imports = [ ./hosts ./modules ];
       perSystem = { config, system, ... }: {
         _module.args.pkgs = import inputs.nixpkgs {

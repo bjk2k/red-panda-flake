@@ -145,17 +145,14 @@ in {
     };
     zed-editor = {
       enable = true;
-      extensions = [ "nix" "toml" "github-theme" "latex" ];
-      userSettings= {
+      extensions = [ "nix" "toml" "github-theme" "latex" "nix" ];
+      userSettings = {
 
         buffer_font_family = "JetBrainsMono Nerd Font";
         buffer_font_fallbacks = [ "FiraCode Nerd Font" ];
         buffer_font_size = 14;
         ui_font_family = "Helvetica";
-        ui_font_fallbacks = [
-          "Helvetica"
-          "FiraCode Nerd Font"
-        ];
+        ui_font_fallbacks = [ "Helvetica" "FiraCode Nerd Font" ];
         theme = {
           "mode" = "system";
           "dark" = "Github Dark";
@@ -169,13 +166,11 @@ in {
           dock = "bottom";
           detect_venv = {
             on = {
-              directories = [".env" "env" ".venv" "venv"];
+              directories = [ ".env" "env" ".venv" "venv" ];
               activate_script = "default";
             };
           };
-          env = {
-            TERM = "xterm-ghostty";
-          };
+          env = { TERM = "xterm-ghostty"; };
           font_family = "JetBrainsMono Nerd Font";
           font_features = null;
           font_size = null;
@@ -186,10 +181,9 @@ in {
           toolbar.title = true;
           working_directory = "current_project_directory";
         };
-        vim_mode= true;
+        vim_mode = true;
         vim.toggle_relative_line_numbers = true;
       };
-
 
       installRemoteServer = true;
       userKeymaps =
