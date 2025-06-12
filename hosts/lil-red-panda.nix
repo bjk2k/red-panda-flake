@@ -43,6 +43,7 @@
         "whisky"
         "ghostty"
         "keycastr"
+        "grammarly-desktop"
       ];
       brews = [ "nowplaying-cli" "kaitai-struct-compiler" ];
     };

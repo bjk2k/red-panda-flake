@@ -77,6 +77,7 @@ with pkgs; [
   poetry
   devenv
   uv
+  pipx
 
   # --- [ ZIG  ] ---
   inputs.zig.packages.${pkgs.system}.master
