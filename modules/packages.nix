@@ -23,6 +23,10 @@ with pkgs; [
 
   inputs.neve.packages.${system}.default
 
+  # --- [ Agenix ] ---
+
+  inputs.agenix.packages.${system}.default
+
   # --- [ UI Applications ] ---
 
   discord
@@ -75,7 +79,7 @@ with pkgs; [
 
   # --- [ PYTHON ] ---
   poetry
-  devenv
+  # devenv
   uv
   pipx
 
@@ -87,6 +91,7 @@ with pkgs; [
   obsidian
   hugo
   dart-sass
+  papis
 
   # --- [ University  ] ---
   anki-bin

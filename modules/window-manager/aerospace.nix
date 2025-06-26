@@ -20,53 +20,32 @@ in {
 
   options.modules.window-manager.aerospace = {
     enable = mkEnableOption "aerospace";
+    enableSketchybar = mkOption {
+      type = types.bool;
+      default = true;
+      description = "Enable sketchybar integration";
+    };
     enableJankyborders = mkOption {
       type = types.bool;
       default = false;
     };
   };
+
   config = mkMerge [
     (mkIf cfg.enable {
-      # --- [ Fonts ] ---
-      fonts.packages = with pkgs; [
-        # --- [ Fira Code ] ---
-        sketchybar-app-font
-        sf-symbols
-      ];
-
-      home-manager.users.${config.people.myself} = {
-        xdg.configFile."sketchybar".source = ./sketchybar;
-      };
-
       services = {
-        # --- [ SketchyBar ] ---
-        sketchybar = {
-          extraPackages = [
-            sbar_menus
-            sbar_events
-            lua
-            pkgs.ripgrep
-            pkgs.sbarlua
-            pkgs.lua5_4
-          ];
-          enable = true;
-
-          config = ''
-            #!${lua}/bin/lua
-                    package.cpath = package.cpath .. ";${lua}/lib/?.so"
-                    require("init")
-          '';
-        };
-
         aerospace = {
           enable = true;
           package = pkgs.aerospace;
           settings = {
             gaps = {
-              outer.top = 44;
-              outer.right = 6;
-              outer.bottom = 8;
-              outer.left = 6;
+              outer.top = if cfg.enableSketchybar then
+                44
+              else
+                1; # adjust top gap based on sketchybar
+              outer.right = 8;
+              outer.bottom = 6;
+              outer.left = 8;
               inner.horizontal = 6;
               inner.vertical = 6;
             };
@@ -75,7 +54,7 @@ in {
             enable-normalization-opposite-orientation-for-nested-containers =
               true;
             accordion-padding = 30;
-            exec-on-workspace-change = [
+            exec-on-workspace-change = mkIf cfg.enableSketchybar [
               "/bin/bash"
               "-c"
               "sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE"
@@ -125,9 +104,6 @@ in {
               alt-cmd-4 = "workspace 4";
               alt-cmd-5 = "workspace 5";
               alt-cmd-6 = "workspace 6";
-              alt-cmd-7 = "workspace 7";
-              alt-cmd-8 = "workspace 8";
-              alt-cmd-9 = "workspace 9";
 
               # Move windows to workspaces
               shift-cmd-1 = "move-node-to-workspace 1";
@@ -136,9 +112,6 @@ in {
               shift-cmd-4 = "move-node-to-workspace 4";
               shift-cmd-5 = "move-node-to-workspace 5";
               shift-cmd-6 = "move-node-to-workspace 6";
-              shift-cmd-7 = "move-node-to-workspace 7";
-              shift-cmd-8 = "move-node-to-workspace 8";
-              shift-cmd-9 = "move-node-to-workspace 9";
 
               alt-shift-cmd-ctrl-s = "mode service";
               alt-shift-cmd-ctrl-r = "mode resize";
@@ -238,6 +211,40 @@ in {
 
           };
         };
+      };
+    })
+    (mkIf (cfg.enable && cfg.enableSketchybar) {
+      # --- [ Fonts ] ---
+      fonts.packages = with pkgs; [
+        # --- [ Fira Code ] ---
+        sketchybar-app-font
+        sf-symbols
+      ];
+
+      home-manager.users.${config.people.myself} = {
+        xdg.configFile."sketchybar".source = ./sketchybar;
+      };
+
+      services = {
+        # --- [ SketchyBar ] ---
+        sketchybar = {
+          extraPackages = [
+            sbar_menus
+            sbar_events
+            lua
+            pkgs.ripgrep
+            pkgs.sbarlua
+            pkgs.lua5_4
+          ];
+          enable = true;
+
+          config = ''
+            #!${lua}/bin/lua
+                    package.cpath = package.cpath .. ";${lua}/lib/?.so"
+                    require("init")
+          '';
+        };
+
       };
 
       launchd = {

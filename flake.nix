@@ -11,10 +11,13 @@
     nixpkgs-master.url = "github:nixos/nixpkgs/master";
     nixpkgs.url = "nixpkgs/nixos-unstable";
     #nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
+    agenix.url = "github:ryantm/agenix";
 
     home-manager = {
       # Manages configs links things into your home directory
-      url = "github:nix-community/home-manager/master";
+      url =
+        "github:nix-community/home-manager/951f0b30c535a46817aa5ef4c66ddc4445f3e324";
+      # url = "github:nix-community/home-manager/master";
       # url = "github:nix-community/home-manager/release-24.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };

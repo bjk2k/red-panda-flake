@@ -1,5 +1,9 @@
 { inputs, config, ... }: {
-  imports = [ inputs.self.nixosModules.common inputs.self.nixosModules.darwin ];
+  imports = [
+    inputs.self.nixosModules.common
+    inputs.self.nixosModules.darwin
+    inputs.agenix.homeManagerModules.default
+  ];
 
   environment.systemPath = [ "/opt/homebrew/bin" "/opt/homebrew/sbin" ];
 
@@ -51,6 +55,7 @@
     terminal = { enable = true; };
     window-manager = {
       aerospace.enable = true;
+      aerospace.enableSketchybar = true;
       aerospace.enableJankyborders = true;
     };
   };
