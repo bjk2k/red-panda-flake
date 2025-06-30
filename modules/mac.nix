@@ -139,7 +139,6 @@ in {
     computerName = currentSystemName;
   };
 
-
   system = {
     defaults.smb.NetBIOSName = currentSystemName;
 

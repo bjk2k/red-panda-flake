@@ -2,7 +2,7 @@
   imports = [
     inputs.self.nixosModules.common
     inputs.self.nixosModules.darwin
-    inputs.agenix.homeManagerModules.default
+    inputs.agenix.darwinModules.default
   ];
 
   environment.systemPath = [ "/opt/homebrew/bin" "/opt/homebrew/sbin" ];
@@ -21,14 +21,32 @@
     };
   };
 
+  age = {
+    identityPaths = [ "/Users/ben-jasperkettlitz/.ssh/id_ed25519_bjk2k" ];
+    secrets = {
+      anthropic_key = {
+        file = ./secrets/anthropic_key.age;
+        mode = "0400";
+        owner = config.people.myself;
+      };
+    };
+  };
   home-manager.users.${config.people.myself} = { lib, ... }: {
     programs.git = { extraConfig = { github.user = "bjk2k"; }; };
-    home.activation.name = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-      run mkdir -p personal $VERBOSE_ARG
-      run mkdir -p personal/orgfiles $VERBOSE_ARG
-      run mkdir -p projects $VERBOSE_ARG
-      run mkdir -p work $VERBOSE_ARG
-    '';
+    home.activation.setupProjectDirectories =
+      lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+        run mkdir -p personal $VERBOSE_ARG
+        run mkdir -p personal/orgfiles $VERBOSE_ARG
+        run mkdir -p projects $VERBOSE_ARG
+        run mkdir -p work $VERBOSE_ARG
+      '';
+
+    # Inject secret into settings.json at activation time
+    home.activation.templateZedConfigAPIKey =
+      lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+        secret=$(cat ${config.age.secrets.anthropic_key.path})
+        echo $secret > $HOME/.anthropic_key
+      '';
   };
 
   system.primaryUser = config.people.myself;
@@ -49,7 +67,7 @@
         "keycastr"
         "grammarly-desktop"
       ];
-      brews = [ "nowplaying-cli" "kaitai-struct-compiler" ];
+      brews = [ "nowplaying-cli" "kaitai-struct-compiler" "libfido2" ];
     };
     tmux = { enable = true; };
     terminal = { enable = true; };

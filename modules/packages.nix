@@ -79,7 +79,7 @@ with pkgs; [
 
   # --- [ PYTHON ] ---
   poetry
-  # devenv
+  devenv
   uv
   pipx
 

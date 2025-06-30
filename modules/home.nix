@@ -7,7 +7,9 @@ let
     '' else ''
       cat "$1" | col -bx | bat --language man --style plain
     '');
+
 in {
+
   home = {
     # Don't change this when you change package input. Leave it alone.
     stateVersion = "23.05";
@@ -31,6 +33,7 @@ in {
       ".inputrc".source = ./dotfiles/inputrc;
       ".gdbinit".source = ./dotfiles/gdbinit;
     };
+
   };
 
   xdg = { enable = true; };
@@ -63,6 +66,17 @@ in {
         nv = "nvim";
         neo = "neovide --frame transparent";
       };
+      # Add to your home.nix or host config
+      initContent = ''
+        # Load agenix secrets as environment variables
+        if [ -f ~/.anthropic_key ]; then
+          export ANTHROPIC_API_KEY="$(cat ~/.anthropic_key)"
+        fi
+
+        # Add more secrets as needed
+        # This runs every time a new shell starts
+      '';
+
     };
 
     direnv = {
@@ -143,11 +157,27 @@ in {
       enable = true;
       enableBashIntegration = true;
     };
+
     zed-editor = {
       enable = true;
       extensions = [ "nix" "toml" "github-theme" "latex" "nix" ];
       userSettings = {
-
+        agent = {
+          default_model = {
+            provider = "anthropic";
+            model = "claude-sonnet-4-latest";
+          };
+          inline_assistant_model = {
+            provider = "anthropic";
+            model = "claude-3-5-sonnet";
+          };
+          version = "2";
+        };
+        edit_predictions = {
+          mode = "subtle";
+          enabled_in_text_threads = false;
+        };
+        show_edit_predictions = false;
         buffer_font_family = "JetBrainsMono Nerd Font";
         buffer_font_fallbacks = [ "FiraCode Nerd Font" ];
         buffer_font_size = 14;
@@ -234,5 +264,6 @@ in {
           sha256 = "sha256-YDw3tbOSg3k/Sff/GPheb0rK84cPq3Bs3eIJDEBj2j0=";
         }];
     };
+
   };
 }

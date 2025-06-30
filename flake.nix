@@ -46,7 +46,6 @@
     zig.url = "github:mitchellh/zig-overlay";
 
     ghostty = { url = "github:ghostty-org/ghostty"; };
-
   };
 
   outputs = { flake-parts, ... }@inputs:
