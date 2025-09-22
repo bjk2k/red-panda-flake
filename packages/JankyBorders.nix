@@ -2,10 +2,6 @@
   lib,
   stdenv,
   fetchFromGitHub,
-  AppKit,
-  Carbon,
-  CoreVideo,
-  SkyLight,
 }:
 stdenv.mkDerivation (finalAttrs: {
   pname = "jankyBorders";
@@ -18,12 +14,7 @@ stdenv.mkDerivation (finalAttrs: {
     hash = "sha256-DX1d228UCOI+JU+RxenhiGyn3AiqpsGe0aCtr091szs=";
   };
 
-  buildInputs = [
-    AppKit
-    Carbon
-    CoreVideo
-    SkyLight
-  ];
+  buildInputs = [ ];
 
   makeFlags = [
     "all"

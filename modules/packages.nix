@@ -19,9 +19,14 @@ with pkgs; [
   # --- [ Nix ] ---
   nh
 
+  jdk8
+
   # --- [ Editors ] ---
 
   inputs.neve.packages.${system}.default
+
+  gtkwave
+  iverilog
 
   # --- [ Agenix ] ---
 
@@ -69,7 +74,7 @@ with pkgs; [
   nodePackages."@tailwindcss/language-server"
   yaml-language-server
 
-  rust-analyzer # lsp for rust
+  # rust-analyzer # lsp for rust
 
   mypy # static typing  used by null-ls
 

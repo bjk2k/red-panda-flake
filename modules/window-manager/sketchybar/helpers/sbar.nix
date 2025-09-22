@@ -22,7 +22,6 @@ in
 
     buildInputs = [
       gcc
-      darwin.apple_sdk.frameworks.CoreFoundation
       readline
     ];
 
