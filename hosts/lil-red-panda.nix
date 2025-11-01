@@ -61,6 +61,7 @@
         "nvidia-geforce-now"
         "steam"
         "motion"
+        "akiflow"
         "github"
         "whisky"
         "ghostty"
