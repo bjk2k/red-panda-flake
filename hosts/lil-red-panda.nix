@@ -90,7 +90,7 @@
     window-manager = {
       aerospace.enable = true;
       aerospace.enableSketchybar = false;
-      aerospace.enableJankyborders = true;
+      aerospace.enableJankyborders = false;
     };
   };
 }

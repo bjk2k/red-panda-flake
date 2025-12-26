@@ -48,12 +48,12 @@ in
           package = pkgs.aerospace;
           settings = {
             gaps = {
-              outer.top = if cfg.enableSketchybar then 44 else 1; # adjust top gap based on sketchybar
+              outer.top = if cfg.enableSketchybar then 44 else 6; # adjust top gap based on sketchybar
               outer.right = 8;
               outer.bottom = 6;
               outer.left = 8;
-              inner.horizontal = 6;
-              inner.vertical = 6;
+              inner.horizontal = 1;
+              inner.vertical = 1;
             };
 
             enable-normalization-flatten-containers = true;
@@ -290,18 +290,23 @@ in
       };
     })
     (mkIf cfg.enableJankyborders {
-      home-manager.users.${config.people.myself} = {
-        xdg.configFile = {
-          "borders/bordersrc".source = ./bordersrc;
-        };
-      };
       launchd.user.agents.jankyborders = {
         path = [ pkgs.janky-borders ];
         serviceConfig = {
-          ProgramArguments = [ "${pkgs.janky-borders}/bin/borders" ];
+          ProgramArguments = [
+            "${pkgs.janky-borders}/bin/borders"
+            "style=round"
+            "width=6"
+            "hidpi=off"
+            "active_color=0xffd8dee9"
+            "inactive_color=0xff494d64"
+            "background_color=0x00000000"
+          ];
 
           KeepAlive = true;
           RunAtLoad = true;
+          ProcessType = "Background";
+          ThrottleInterval = 30;
           StandardOutPath = "/tmp/borders.log";
           StandardErrorPath = "/tmp/borders.log";
         };
