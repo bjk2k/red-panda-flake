@@ -1,5 +1,5 @@
 { inputs, config, ... }: {
-  imports = [ inputs.self.nixosModules.common inputs.self.nixosModules.darwin ];
+  imports = [ inputs.self.darwinModules.common inputs.self.darwinModules.darwin ];
 
   environment.systemPath = [ "/opt/homebrew/bin" "/opt/homebrew/sbin" ];
 
@@ -28,7 +28,7 @@
     };
   };
   home-manager.users.${config.people.myself} = { lib, ... }: {
-    programs.git = { extraConfig = { github.user = "bjk2k"; }; };
+    programs.git = { settings = { github.user = "bjk2k"; }; };
     home.activation.setupProjectDirectories =
       lib.hm.dag.entryAfter [ "writeBoundary" ] ''
         run mkdir -p personal $VERBOSE_ARG

@@ -96,7 +96,6 @@ with pkgs; [
   obsidian
   hugo
   dart-sass
-  papis
 
   # --- [ University  ] ---
   anki-bin

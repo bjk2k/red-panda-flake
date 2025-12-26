@@ -52,7 +52,12 @@ in {
 
     ssh = {
       enable = true;
-      addKeysToAgent = "yes";
+      enableDefaultConfig = false;
+      matchBlocks = {
+        "*" = {
+          addKeysToAgent = "yes";
+        };
+      };
     };
 
     zsh = {
@@ -89,27 +94,27 @@ in {
       enable = true;
       lfs.enable = true;
       package = pkgs.git;
-      userName = config.people.users.${currentUser}.name;
-      userEmail = config.people.users.${currentUser}.email;
-      aliases = {
-        # common aliases
-        br = "branch";
-        co = "checkout";
-        st = "status";
-        ls = ''
-          log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate'';
-        ll = ''
-          log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat'';
-        cm = "commit -m";
-        ca = "commit -am";
-        dc = "diff --cached";
-        amend = "commit --amend -m";
+      settings = {
+        user = {
+          name = config.people.users.${currentUser}.name;
+          email = config.people.users.${currentUser}.email;
+        };
+        alias = {
+          # common aliases
+          br = "branch";
+          co = "checkout";
+          st = "status";
+          ls = ''log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate'';
+          ll = ''log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat'';
+          cm = "commit -m";
+          ca = "commit -am";
+          dc = "diff --cached";
+          amend = "commit --amend -m";
 
-        # aliases for submodule
-        update = "submodule update --init --recursive";
-        foreach = "submodule foreach";
-      };
-      extraConfig = {
+          # aliases for submodule
+          update = "submodule update --init --recursive";
+          foreach = "submodule foreach";
+        };
         branch.autosetuprebase = "always";
         color.ui = true;
         core.askPass = ""; # needs to be empty to use terminal for ask pass
