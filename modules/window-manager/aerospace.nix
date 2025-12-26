@@ -1,6 +1,11 @@
 # this module aims to create a linuxy window-manager-like experience on macos
 # Inspired by:
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 with lib;
 let
   # to escape $ propertly, config uses that create fsspace
@@ -10,12 +15,16 @@ let
 
   sbarLua = pkgs.callPackage ./sketchybar/helpers/sbar.nix { };
 
-  lua = pkgs.lua54Packages.lua.withPackages
-    (ps: [ ps.lua sbarLua sketchybarConfigLua ]);
+  lua = pkgs.lua54Packages.lua.withPackages (ps: [
+    ps.lua
+    sbarLua
+    sketchybarConfigLua
+  ]);
 
   sbar_menus = pkgs.callPackage ./sketchybar/helpers/menus { };
   sbar_events = pkgs.callPackage ./sketchybar/helpers/event_providers { };
-in {
+in
+{
   # add the aerospace pkg
 
   options.modules.window-manager.aerospace = {
@@ -39,10 +48,7 @@ in {
           package = pkgs.aerospace;
           settings = {
             gaps = {
-              outer.top = if cfg.enableSketchybar then
-                44
-              else
-                1; # adjust top gap based on sketchybar
+              outer.top = if cfg.enableSketchybar then 44 else 1; # adjust top gap based on sketchybar
               outer.right = 8;
               outer.bottom = 6;
               outer.left = 8;
@@ -51,8 +57,7 @@ in {
             };
 
             enable-normalization-flatten-containers = true;
-            enable-normalization-opposite-orientation-for-nested-containers =
-              true;
+            enable-normalization-opposite-orientation-for-nested-containers = true;
             accordion-padding = 30;
             exec-on-workspace-change = mkIf cfg.enableSketchybar [
               "/bin/bash"
@@ -64,7 +69,9 @@ in {
             default-root-container-orientation = "auto";
             automatically-unhide-macos-hidden-apps = true;
 
-            key-mapping = { preset = "qwerty"; };
+            key-mapping = {
+              preset = "qwerty";
+            };
             mode.main.binding = {
 
               # Window management
@@ -129,14 +136,38 @@ in {
 
             mode.service.binding = {
               # Service mode bindings
-              esc = [ "reload-config" "mode main" ];
-              r = [ "flatten-workspace-tree" "mode main" ];
-              f = [ "layout floating tiling" "mode main" ];
-              backspace = [ "close-all-windows-but-current" "mode main" ];
-              shift-cmd-h = [ "join-with left" "mode main" ];
-              shift-cmd-j = [ "join-with down" "mode main" ];
-              shift-cmd-k = [ "join-with up" "mode main" ];
-              shift-cmd-l = [ "join-with right" "mode main" ];
+              esc = [
+                "reload-config"
+                "mode main"
+              ];
+              r = [
+                "flatten-workspace-tree"
+                "mode main"
+              ];
+              f = [
+                "layout floating tiling"
+                "mode main"
+              ];
+              backspace = [
+                "close-all-windows-but-current"
+                "mode main"
+              ];
+              shift-cmd-h = [
+                "join-with left"
+                "mode main"
+              ];
+              shift-cmd-j = [
+                "join-with down"
+                "mode main"
+              ];
+              shift-cmd-k = [
+                "join-with up"
+                "mode main"
+              ];
+              shift-cmd-l = [
+                "join-with right"
+                "mode main"
+              ];
             };
             # =================================================================
             #
@@ -260,7 +291,9 @@ in {
     })
     (mkIf cfg.enableJankyborders {
       home-manager.users.${config.people.myself} = {
-        xdg.configFile = { "borders/bordersrc".source = ./bordersrc; };
+        xdg.configFile = {
+          "borders/bordersrc".source = ./bordersrc;
+        };
       };
       launchd.user.agents.jankyborders = {
         path = [ pkgs.janky-borders ];

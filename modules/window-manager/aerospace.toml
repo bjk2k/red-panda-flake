@@ -36,7 +36,7 @@ inner.horizontal = 6
 inner.vertical =   6
 outer.left =       6
 outer.bottom =     6
-outer.top =        44 # 40 sketchybar + 2 pad bar on top + 2 for gaps
+outer.top =        6 # 44 # 40 sketchybar + 2 pad bar on top + 2 for gaps
 outer.right =      6
 
 # Main mode bindings
@@ -144,5 +144,3 @@ run = 'move-node-to-workspace 5'
 [[on-window-detected]]
 if.app-id = 'com.neovide.neovide'
 run = 'move-node-to-workspace 1'
-
-
