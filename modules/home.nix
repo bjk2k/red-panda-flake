@@ -1,22 +1,36 @@
-{ pkgs, lib, config, inputs, ... }:
+{
+  pkgs,
+  lib,
+  config,
+  inputs,
+  system,
+  ...
+}:
 let
   currentUser = config.people.myself;
-  manpager = pkgs.writeShellScriptBin "manpager"
-    (if pkgs.stdenvNoCC.isDarwin then ''
-      sh -c 'col -bx | bat -l man -p'
-    '' else ''
-      cat "$1" | col -bx | bat --language man --style plain
-    '');
+  manpager = pkgs.writeShellScriptBin "manpager" (
+    if pkgs.stdenvNoCC.isDarwin then
+      ''
+        sh -c 'col -bx | bat -l man -p'
+      ''
+    else
+      ''
+        cat "$1" | col -bx | bat --language man --style plain
+      ''
+  );
 
-in {
+in
+{
 
   home = {
     # Don't change this when you change package input. Leave it alone.
     stateVersion = "23.05";
-    packages = import ./packages.nix { inherit pkgs inputs; }
-      ++ lib.optionals pkgs.stdenvNoCC.isDarwin
+    packages =
+      import ./packages.nix { inherit pkgs inputs system; }
+      ++
+        lib.optionals pkgs.stdenvNoCC.isDarwin
 
-      (import ./macos_packages.nix { inherit pkgs; });
+          (import ./macos_packages.nix { inherit pkgs; });
 
     sessionVariables = {
       LANG = "en_US.UTF-8";
@@ -36,14 +50,18 @@ in {
 
   };
 
-  xdg = { enable = true; };
+  xdg = {
+    enable = true;
+  };
 
   programs = {
     bat = {
       enable = true;
       config.theme = "TwoDark";
     };
-    home-manager = { enable = true; };
+    home-manager = {
+      enable = true;
+    };
 
     fzf = {
       enable = true;
@@ -87,7 +105,9 @@ in {
     direnv = {
       enable = true;
       enableZshIntegration = true;
-      nix-direnv = { enable = true; };
+      nix-direnv = {
+        enable = true;
+      };
     };
 
     git = {
@@ -125,9 +145,13 @@ in {
       };
     };
 
-    lazygit = { enable = true; };
+    lazygit = {
+      enable = true;
+    };
 
-    yazi = { enable = true; };
+    yazi = {
+      enable = true;
+    };
 
     zoxide = {
       enable = true;
@@ -165,7 +189,13 @@ in {
 
     zed-editor = {
       enable = true;
-      extensions = [ "nix" "toml" "github-theme" "latex" "nix" ];
+      extensions = [
+        "nix"
+        "toml"
+        "github-theme"
+        "latex"
+        "nix"
+      ];
       userSettings = {
         agent = {
           default_model = {
@@ -187,7 +217,10 @@ in {
         buffer_font_fallbacks = [ "FiraCode Nerd Font" ];
         buffer_font_size = 14;
         ui_font_family = "Helvetica";
-        ui_font_fallbacks = [ "Helvetica" "FiraCode Nerd Font" ];
+        ui_font_fallbacks = [
+          "Helvetica"
+          "FiraCode Nerd Font"
+        ];
         theme = {
           "mode" = "system";
           "dark" = "Github Dark";
@@ -201,11 +234,18 @@ in {
           dock = "bottom";
           detect_venv = {
             on = {
-              directories = [ ".env" "env" ".venv" "venv" ];
+              directories = [
+                ".env"
+                "env"
+                ".venv"
+                "venv"
+              ];
               activate_script = "default";
             };
           };
-          env = { TERM = "xterm-ghostty"; };
+          env = {
+            TERM = "xterm-ghostty";
+          };
           font_family = "JetBrainsMono Nerd Font";
           font_features = null;
           font_size = null;
@@ -221,8 +261,7 @@ in {
       };
 
       installRemoteServer = true;
-      userKeymaps =
-        builtins.fromJSON (builtins.readFile ./dotfiles/zed_keymap.json);
+      userKeymaps = builtins.fromJSON (builtins.readFile ./dotfiles/zed_keymap.json);
     };
 
     neovide = {
@@ -237,7 +276,8 @@ in {
     };
     vscode = {
       enable = true;
-      profiles.default.extensions = with pkgs.vscode-extensions;
+      profiles.default.extensions =
+        with pkgs.vscode-extensions;
         [
           vscodevim.vim
           wakatime.vscode-wakatime
@@ -262,12 +302,15 @@ in {
 
           # Markdown
           yzhang.markdown-all-in-one
-        ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [{
-          name = "kanagawa-black";
-          publisher = "lamarcke";
-          version = "1.0.5";
-          sha256 = "sha256-YDw3tbOSg3k/Sff/GPheb0rK84cPq3Bs3eIJDEBj2j0=";
-        }];
+        ]
+        ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
+          {
+            name = "kanagawa-black";
+            publisher = "lamarcke";
+            version = "1.0.5";
+            sha256 = "sha256-YDw3tbOSg3k/Sff/GPheb0rK84cPq3Bs3eIJDEBj2j0=";
+          }
+        ];
     };
 
   };

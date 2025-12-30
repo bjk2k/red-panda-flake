@@ -1,5 +1,10 @@
-{ inputs, pkgs, }:
-with pkgs; [
+{
+  inputs,
+  pkgs,
+  system,
+}:
+with pkgs;
+[
   # --- [ Shell Utilities ] ---
   ripgrep
   fd
@@ -10,6 +15,7 @@ with pkgs; [
   # kitty-themes
   glab
   fastfetch
+  just
 
   fzy
   television

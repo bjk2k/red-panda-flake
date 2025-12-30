@@ -1,10 +1,17 @@
-{ inputs, config, lib, pkgs, ... }:
-with pkgs.stdenv;
+{
+  inputs,
+  config,
+  lib,
+  pkgs,
+  system,
+  ...
+}:
 with lib;
 let
   currentUser = config.people.myself;
   currentSystemName = config.my.hostname;
-in {
+in
+{
   imports = [ inputs.home-manager.darwinModules.home-manager ];
 
   # --- [ FONTS ] ---
@@ -125,12 +132,22 @@ in {
     backupFileExtension = "backup";
     useGlobalPkgs = true;
     useUserPackages = false;
-    users.${currentUser} =
-      import ./home.nix { inherit inputs pkgs lib config; };
+    users.${currentUser} = import ./home.nix {
+      inherit
+        inputs
+        pkgs
+        lib
+        config
+        system
+        ;
+    };
   };
 
   environment = {
-    shells = with pkgs; [ bashInteractive zsh ];
+    shells = with pkgs; [
+      bashInteractive
+      zsh
+    ];
     systemPackages = with pkgs; [ cachix ];
   };
 
@@ -150,12 +167,13 @@ in {
         TrackpadRightClick = true; # enable two finger right click
         TrackpadThreeFingerDrag = true; # enable three finger drag
       };
+
       dock = {
         autohide = true; # Autohide the dock
         persistent-apps = [
           "/Applications/Safari.app"
           "/System/Applications/Mail.app"
-          "/Applications/Beeper.app"
+          "/Applications/Beeper\ Desktop.app"
           "/System/Applications/Messages.app"
           # "${pkgs.kitty}/Applications/Kitty.app/"
           "/Applications/Ghostty.app"
@@ -170,7 +188,6 @@ in {
         show-recents = false; # Do not show recent applications
       };
       NSGlobalDomain = {
-        _HIHideMenuBar = true;
         AppleShowAllExtensions = true;
         InitialKeyRepeat = 14;
         KeyRepeat = 1;
@@ -179,11 +196,9 @@ in {
 
     # --- [ KEYBOARD ] ---
     keyboard = {
-      enableKeyMapping =
-        true; # enable key mapping so that we can use `option` as `control`
+      enableKeyMapping = true; # enable key mapping so that we can use `option` as `control`
 
-      remapCapsLockToEscape =
-        true; # remap caps lock to escape, useful for vim users
+      remapCapsLockToEscape = true; # remap caps lock to escape, useful for vim users
 
       # swap left command and left alt
       # so it matches common keyboard layout: `ctrl | command | alt`

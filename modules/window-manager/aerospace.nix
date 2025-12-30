@@ -38,6 +38,16 @@ in
       type = types.bool;
       default = false;
     };
+    hideMenuBar = mkOption {
+      type = types.bool;
+      default = false;
+      description = "Hide the macOS menu bar";
+    };
+    alwaysShowMenuBar = mkOption {
+      type = types.bool;
+      default = false;
+      description = "Always show the macOS menu bar (prevents auto-hiding)";
+    };
   };
 
   config = mkMerge [
@@ -48,7 +58,13 @@ in
           package = pkgs.aerospace;
           settings = {
             gaps = {
-              outer.top = if cfg.enableSketchybar then 44 else 6; # adjust top gap based on sketchybar
+              outer.top =
+                if cfg.enableSketchybar then
+                  44
+                else if cfg.hideMenuBar then
+                  6
+                else
+                  6; # adjust top gap: sketchybar=44px, hidden menu bar=6px, visible menu bar=25px
               outer.right = 8;
               outer.bottom = 6;
               outer.left = 8;
@@ -311,6 +327,12 @@ in
           StandardErrorPath = "/tmp/borders.log";
         };
       };
+    })
+    (mkIf (cfg.enable && cfg.hideMenuBar) {
+      system.defaults.NSGlobalDomain._HIHideMenuBar = true;
+    })
+    (mkIf (cfg.enable && cfg.alwaysShowMenuBar) {
+      system.defaults.NSGlobalDomain._HIHideMenuBar = false;
     })
   ];
 }

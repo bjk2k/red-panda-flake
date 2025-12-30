@@ -91,6 +91,7 @@
       aerospace.enable = true;
       aerospace.enableSketchybar = false;
       aerospace.enableJankyborders = false;
+      aerospace.alwaysShowMenuBar = true;
     };
   };
 }
