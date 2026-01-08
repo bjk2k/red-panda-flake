@@ -60,6 +60,7 @@
 
   modules = {
     podman.enable = true;
+    docker.enable = true;
     brew = {
       enable = true;
       casks = [

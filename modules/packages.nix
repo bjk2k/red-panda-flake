@@ -16,6 +16,11 @@ with pkgs;
   glab
   fastfetch
   just
+  jujutsu
+
+  # -- K8S
+  minikube
+  lens
 
   fzy
   television

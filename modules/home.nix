@@ -198,14 +198,14 @@ in
       ];
       userSettings = {
         agent = {
-          default_model = {
-            provider = "anthropic";
-            model = "claude-sonnet-4-latest";
-          };
-          inline_assistant_model = {
-            provider = "anthropic";
-            model = "claude-3-5-sonnet";
-          };
+          # default_model = {
+          #   provider = "anthropic";
+          #   model = "claude-sonnet-4-latest";
+          # };
+          # inline_assistant_model = {
+          #   provider = "anthropic";
+          #   model = "claude-3-5-sonnet";
+          # };
           version = "2";
         };
         edit_predictions = {
