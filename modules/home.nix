@@ -145,6 +145,62 @@ in
       };
     };
 
+    jujutsu = {
+      enable = true;
+      settings = {
+        user = {
+          name = config.people.users.${currentUser}.name;
+          email = config.people.users.${currentUser}.email;
+        };
+        signing = {
+          sign-all = true;
+          backend = "ssh";
+          key = config.people.users.${currentUser}.sshKey;
+        };
+        ui = {
+          default-command = "log";
+          diff = {
+            tool = "difft";
+            format = "git";
+          };
+          pager = "less -FRX";
+        };
+        aliases = {
+          # Align with git aliases where applicable
+          st = [ "status" ];
+          cm = [ "commit" "-m" ];
+          amend = [ "commit" "--amend" ];
+          co = [ "new" ];  # jj equivalent of checkout
+          br = [ "branch" "list" ];
+          ls = [ "log" ];
+          # Community alias - moves nearest ancestor bookmark to current change
+          tug = [ "bookmark" "move" "--from" "heads(::@- & bookmarks())" "--to" "@-" ];
+        };
+        colors = {
+          "diff removed token" = {
+            fg = "bright red";
+            bg = "#400000";
+            underline = false;
+          };
+          "diff added token" = {
+            fg = "bright green";
+            bg = "#003000";
+            underline = false;
+          };
+        };
+        core = {
+          fsmonitor = "watchman";
+        };
+        git = {
+          auto-local-branch = true;
+          push-branch-prefix = "push-";
+        };
+        revset-aliases = {
+          "trunk()" = "main@origin | main";
+        };
+      };
+    };
+
     lazygit = {
       enable = true;
     };
