@@ -215,6 +215,11 @@ in
       options = [ "--cmd cd" ];
     };
 
+    carapace = {
+      enable = true;
+      enableZshIntegration = true;
+    };
+
     # kitty = {
     #   enable = false;
     #   # font = { name = "Cascadia Code Nerd Font"; };
