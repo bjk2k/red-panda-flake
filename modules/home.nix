@@ -159,10 +159,7 @@ in
         };
         ui = {
           default-command = "log";
-          diff = {
-            tool = "difft";
-            format = "git";
-          };
+          diff-formatter = "difft";
           pager = "less -FRX";
         };
         aliases = {
@@ -188,8 +185,8 @@ in
             underline = false;
           };
         };
-        core = {
-          fsmonitor = "watchman";
+        fsmonitor = {
+          backend = "watchman";
         };
         git = {
           auto-local-branch = true;
