@@ -2,12 +2,13 @@
   pkgs,
   lib,
   config,
+  darwinConfig,
   inputs,
   system,
   ...
 }:
 let
-  currentUser = config.people.myself;
+  currentUser = darwinConfig.people.myself;
   manpager = pkgs.writeShellScriptBin "manpager" (
     if pkgs.stdenvNoCC.isDarwin then
       ''
@@ -40,6 +41,7 @@ in
       CLICLOLOR = 1;
       EDITOR = "nvim";
       MANPAGER = "${manpager}/bin/manpager";
+      RUST_SRC_PATH = "${pkgs.rustPlatform.rustLibSrc}";
     };
 
     # -- [ File System ] --
@@ -80,6 +82,7 @@ in
 
     zsh = {
       enable = true;
+      dotDir = "${config.xdg.configHome}/zsh";
       enableCompletion = true;
       autosuggestion.enable = true;
       syntaxHighlighting.enable = true;
@@ -116,8 +119,8 @@ in
       package = pkgs.git;
       settings = {
         user = {
-          name = config.people.users.${currentUser}.name;
-          email = config.people.users.${currentUser}.email;
+          name = darwinConfig.people.users.${currentUser}.name;
+          email = darwinConfig.people.users.${currentUser}.email;
         };
         alias = {
           # common aliases
@@ -149,13 +152,13 @@ in
       enable = true;
       settings = {
         user = {
-          name = config.people.users.${currentUser}.name;
-          email = config.people.users.${currentUser}.email;
+          name = darwinConfig.people.users.${currentUser}.name;
+          email = darwinConfig.people.users.${currentUser}.email;
         };
         signing = {
           sign-all = true;
           backend = "ssh";
-          key = config.people.users.${currentUser}.sshKey;
+          key = darwinConfig.people.users.${currentUser}.sshKey;
         };
         ui = {
           default-command = "log";

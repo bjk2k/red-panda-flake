@@ -39,7 +39,6 @@ in {
       global = {
         brewfile = true;
         autoUpdate = true;
-        lockfiles = true;
       };
       # homebrew.taps = cfg.taps;
       inherit (cfg) brews;

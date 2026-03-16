@@ -13,6 +13,7 @@ with pkgs;
   less
   # kitty
   # kitty-themes
+  gh
   glab
   fastfetch
   just
@@ -92,6 +93,7 @@ with pkgs;
   # --- [ RUST ] ---
   cargo
   rustc
+  rust-analyzer
 
   # --- [ PYTHON ] ---
   poetry

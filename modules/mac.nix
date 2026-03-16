@@ -132,15 +132,11 @@ in
     backupFileExtension = "backup";
     useGlobalPkgs = true;
     useUserPackages = false;
-    users.${currentUser} = import ./home.nix {
-      inherit
-        inputs
-        pkgs
-        lib
-        config
-        system
-        ;
+    extraSpecialArgs = {
+      darwinConfig = config;
+      inherit inputs system;
     };
+    users.${currentUser} = import ./home.nix;
   };
 
   environment = {

@@ -85,6 +85,15 @@ in
             default-root-container-orientation = "auto";
             automatically-unhide-macos-hidden-apps = true;
 
+            after-startup-command = [
+              "workspace 1" "layout tiles" "workspace-back-and-forth"
+              "workspace 2" "layout tiles" "workspace-back-and-forth"
+              "workspace 3" "layout tiles" "workspace-back-and-forth"
+              "workspace 4" "layout tiles" "workspace-back-and-forth"
+              "workspace 5" "layout tiles" "workspace-back-and-forth"
+              "workspace 6" "layout tiles" "workspace-back-and-forth"
+            ];
+
             key-mapping = {
               preset = "qwerty";
             };
@@ -185,6 +194,8 @@ in
                 "mode main"
               ];
             };
+
+
             # =================================================================
             #
             # Assign apps on particular workspaces
@@ -252,6 +263,14 @@ in
                 };
                 check-further-callbacks = false;
                 run = "move-node-to-workspace 1";
+              }
+              {
+                "if" = {
+                  app-id = "md.obsidian";
+                  during-aerospace-startup = true;
+                };
+                check-further-callbacks = false;
+                run = "move-node-to-workspace 6";
               }
 
             ];
