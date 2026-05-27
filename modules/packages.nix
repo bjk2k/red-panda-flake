@@ -67,8 +67,8 @@ with pkgs;
   ruff # python linter used by null-ls
   nixfmt
 
-  nodePackages.eslint_d # js/ts
-  nodePackages.prettier # js/ts
+  eslint_d # js/ts
+  prettier # js/ts
 
   # -- o -- [ Formatters ] --
   google-java-format
@@ -79,11 +79,11 @@ with pkgs;
   rustfmt
 
   # -- o -- [ LSP Node Packages] --
-  nodePackages.svelte-language-server
-  nodePackages.diagnostic-languageserver
-  nodePackages.typescript-language-server
-  nodePackages.bash-language-server
-  nodePackages."@tailwindcss/language-server"
+  svelte-language-server
+  diagnostic-languageserver
+  typescript-language-server
+  bash-language-server
+  tailwindcss-language-server
   yaml-language-server
 
   # rust-analyzer # lsp for rust

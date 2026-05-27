@@ -28,7 +28,23 @@
           };
 
           modules = [
-            { nixpkgs.hostPlatform = system; }
+            {
+              nixpkgs.hostPlatform = system;
+              # pipx 1.8.0 tests run as installCheckPhase (doInstallCheck=1),
+              # NOT checkPhase -- so doCheck=false has no effect. Disable
+              # doInstallCheck instead. Remove once nixpkgs fixes upstream tests.
+              nixpkgs.overlays = [
+                (final: prev: {
+                  pythonPackagesExtensions = prev.pythonPackagesExtensions ++ [
+                    (pyFinal: pyPrev: {
+                      pipx = pyPrev.pipx.overrideAttrs (_: {
+                        doInstallCheck = false;
+                      });
+                    })
+                  ];
+                })
+              ];
+            }
             ./lil-red-panda.nix
           ];
         }
@@ -53,7 +69,23 @@
           };
 
           modules = [
-            { nixpkgs.hostPlatform = system; }
+            {
+              nixpkgs.hostPlatform = system;
+              # pipx 1.8.0 tests run as installCheckPhase (doInstallCheck=1),
+              # NOT checkPhase -- so doCheck=false has no effect. Disable
+              # doInstallCheck instead. Remove once nixpkgs fixes upstream tests.
+              nixpkgs.overlays = [
+                (final: prev: {
+                  pythonPackagesExtensions = prev.pythonPackagesExtensions ++ [
+                    (pyFinal: pyPrev: {
+                      pipx = pyPrev.pipx.overrideAttrs (_: {
+                        doInstallCheck = false;
+                      });
+                    })
+                  ];
+                })
+              ];
+            }
             ./lil-dragon.nix
           ];
         }

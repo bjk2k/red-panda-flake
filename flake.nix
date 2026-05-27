@@ -1,6 +1,5 @@
 {
-  description =
-    "Nix toolchain in use by bjk2k. Full of cute red-pandas and tumbleweeds.";
+  description = "Nix toolchain in use by bjk2k. Full of cute red-pandas and tumbleweeds.";
 
   inputs = {
     # Pin our primary nixpkgs repository. This is the main nixpkgs repository
@@ -44,21 +43,48 @@
 
     zig.url = "github:mitchellh/zig-overlay";
 
-    ghostty = { url = "github:ghostty-org/ghostty"; };
+    ghostty = {
+      url = "github:ghostty-org/ghostty";
+    };
   };
 
-  outputs = { flake-parts, ... }@inputs:
+  outputs =
+    { flake-parts, ... }@inputs:
     flake-parts.lib.mkFlake { inherit inputs; } {
-      systems = [ "aarch64-darwin" "aarch64-linux" "x86_64-darwin" ];
-      imports = [ ./hosts ./modules ];
-      perSystem = { config, system, ... }: {
-        _module.args.pkgs = import inputs.nixpkgs {
-          inherit system;
-          config = {
-            allowUnfree = true;
-            allowBroken = true;
+      systems = [
+        "aarch64-darwin"
+        "aarch64-linux"
+        "x86_64-darwin"
+      ];
+      imports = [
+        ./hosts
+        ./modules
+      ];
+      perSystem =
+        { config, system, ... }:
+        {
+          _module.args.pkgs = import inputs.nixpkgs {
+            inherit system;
+            config = {
+              allowUnfree = true;
+              allowBroken = true;
+            };
+            overlays = [
+              # pipx 1.8.0 has broken test expectations around `@` spacing.
+              # pkgs.pipx is a toPythonApplication wrapper; the failing build is
+              # python3Packages.pipx, so we must patch via pythonPackagesExtensions.
+              # Remove once nixpkgs fixes the upstream tests.
+              (final: prev: {
+                pythonPackagesExtensions = prev.pythonPackagesExtensions ++ [
+                  (pyFinal: pyPrev: {
+                    pipx = pyPrev.pipx.overrideAttrs (_: {
+                      doInstallCheck = false;
+                    });
+                  })
+                ];
+              })
+            ];
           };
         };
-      };
     };
 }
