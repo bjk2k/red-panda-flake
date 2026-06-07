@@ -3,22 +3,24 @@
   lib,
   ...
 }:
-with lib; let
+with lib;
+let
   cfg = config.modules.brew;
-in {
+in
+{
   options.modules.brew = {
     enable = mkEnableOption "brew";
     brews = mkOption {
       type = types.listOf types.str;
-      default = [];
+      default = [ ];
     };
     casks = mkOption {
       type = types.listOf types.str;
-      default = ["firefox"];
+      default = [ "firefox" ];
     };
     masApps = mkOption {
       type = with types; attrsOf ints.positive;
-      default = {};
+      default = { };
     };
     extraConfig = mkOption {
       type = types.lines;
@@ -35,6 +37,9 @@ in {
         autoUpdate = true;
         upgrade = true;
         cleanup = "zap";
+        # brew bundle now requires --force or --force-cleanup alongside
+        # --cleanup; remove once nix-darwin passes it by default.
+        extraFlags = [ "--force-cleanup" ];
       };
       global = {
         brewfile = true;

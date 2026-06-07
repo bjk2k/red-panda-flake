@@ -3,11 +3,15 @@
   config,
   inputs',
   ...
-}: {
+}:
+{
   nix = {
     # configureBuildUsers = true;
     settings = {
-      trusted-users = ["root" config.people.myself];
+      trusted-users = [
+        "root"
+        config.people.myself
+      ];
     };
     # Avoid unwanted garbage collection when using nix-direnv
     extraOptions = ''
@@ -34,7 +38,7 @@
       (_final: _prev: {
         stable = inputs'.nixpkgs-stable.legacyPackages;
       })
-      
+
       # apply zig-overlay from inputs
       (_final: _prev: {
         zig = inputs'.zig.overlay;

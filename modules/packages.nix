@@ -45,8 +45,7 @@ with pkgs;
 
   # --- [ UI Applications ] ---
 
-  discord
-  logseq
+  # discord
 
   # -- [ LSP related depenedencies ] --
   alejandra
