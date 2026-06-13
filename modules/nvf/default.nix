@@ -54,7 +54,7 @@ in {
       };
       vaultPath = mkOption {
         type = types.str;
-        default = "~/personal/notes";
+        default = "~/personal/vault/";
         description = "Filesystem path to the Obsidian vault workspace.";
       };
     };
