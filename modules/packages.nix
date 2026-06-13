@@ -34,7 +34,7 @@ with pkgs;
 
   # --- [ Editors ] ---
 
-  inputs.neve.packages.${system}.default
+  # inputs.neve.packages.${system}.default
 
   gtkwave
   iverilog

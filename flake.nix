@@ -29,7 +29,13 @@
 
     # Tricked out nvim
     pwnvim.url = "github:bjk2k/pwnvim-with-red-pandas";
-    neve.url = "github:bjk2k/neve";
+    # neve.url = "github:bjk2k/neve";
+
+    # Modular, configurable Neovim distribution
+    nvf = {
+      url = "github:notashelf/nvf";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     # custom icons
     darwin-custom-icons.url = "github:ryanccn/nix-darwin-custom-icons";

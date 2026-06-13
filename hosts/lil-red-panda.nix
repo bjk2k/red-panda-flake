@@ -82,6 +82,7 @@
         "libfido2"
       ];
     };
+    nvf.enable = true;
     tmux = {
       enable = true;
     };
