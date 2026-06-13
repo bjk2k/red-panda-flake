@@ -32,6 +32,9 @@ with pkgs;
 
   jdk8
 
+  # --- [ ACP agents ] ---
+  claude-agent-acp
+
   # --- [ Editors ] ---
 
   # inputs.neve.packages.${system}.default

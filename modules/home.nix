@@ -168,13 +168,29 @@ in
         aliases = {
           # Align with git aliases where applicable
           st = [ "status" ];
-          cm = [ "commit" "-m" ];
-          amend = [ "commit" "--amend" ];
-          co = [ "new" ];  # jj equivalent of checkout
-          br = [ "branch" "list" ];
+          cm = [
+            "commit"
+            "-m"
+          ];
+          amend = [
+            "commit"
+            "--amend"
+          ];
+          co = [ "new" ]; # jj equivalent of checkout
+          br = [
+            "branch"
+            "list"
+          ];
           ls = [ "log" ];
           # Community alias - moves nearest ancestor bookmark to current change
-          tug = [ "bookmark" "move" "--from" "heads(::@- & bookmarks())" "--to" "@-" ];
+          tug = [
+            "bookmark"
+            "move"
+            "--from"
+            "heads(::@- & bookmarks())"
+            "--to"
+            "@-"
+          ];
         };
         colors = {
           "diff removed token" = {
@@ -283,7 +299,7 @@ in
           "FiraCode Nerd Font"
         ];
         theme = {
-          "mode" = "system";
+          "mode" = "dark";
           "dark" = "Github Dark";
           "light" = "Github Light";
         };

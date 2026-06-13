@@ -400,16 +400,14 @@ in
             avante-nvim = {
               enable = cfg.assistant.avante.enable;
               setupOpts = {
-                # ACP (Agent Client Protocol) via Claude Code.
-                # Runs a local @zed-industries/claude-code-acp stdio server
-                # through npx; the ANTHROPIC_API_KEY is read from the
-                # environment at runtime (populated by the zsh initContent
-                # snippet that sources ~/.anthropic_key).
+                # ACP (Agent Client Protocol) via the claude-agent-acp binary
+                # (pkgs.claude-agent-acp from nixpkgs-unstable, installed into
+                # PATH via packages.nix). No npx download required.
                 provider = "claude-code";
                 acp_providers = {
                   "claude-code" = {
-                    command = "npx";
-                    args = [ "@zed-industries/claude-code-acp" ];
+                    command = "claude-agent-acp";
+                    args = [ ];
                     env = {
                       NODE_NO_WARNINGS = "1";
                       ANTHROPIC_API_KEY = {
