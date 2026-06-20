@@ -313,6 +313,14 @@ in {
               # In-buffer markdown rendering (headings, code blocks, tables,
               # checkboxes, callouts) via render-markdown.nvim.
               extensions.render-markdown-nvim.enable = true;
+              # nvf defaults render-markdown's `file_types` to null, and the
+              # avante module appends "Avante" to it via `lib.mkAfter`. With no
+              # base value the list collapses to just ["Avante"], so
+              # render-markdown attaches ONLY to avante's AI sidebar and never
+              # to real markdown/Obsidian buffers — tables (and everything else)
+              # stop rendering. Supply the base filetype explicitly; avante's
+              # mkAfter still appends, yielding ["markdown" "Avante"].
+              extensions.render-markdown-nvim.setupOpts.file_types = ["markdown"];
             };
 
             # Maximal set
@@ -396,6 +404,64 @@ in {
           autocomplete.blink-cmp.enable = true;
 
           treesitter.context.enable = true;
+
+          # ── Treesitter text objects ──────────────────────────────────────────
+          # Syntax-aware text objects (select/swap/move) layered on top of the
+          # treesitter parsers already pulled in by languages.enableTreesitter.
+          # NOTE: the upstream `move.set_jumps`/repeat feature rebinds `;` and
+          # `,` in normal/operator mode — `,` is our leader, so we deliberately
+          # do NOT enable that remap and rely on `]`/`[` motions instead.
+          treesitter.textobjects = {
+            enable = true;
+            setupOpts = {
+              select = {
+                enable = true;
+                # Jump forward to a text object if the cursor isn't on one.
+                lookahead = true;
+                keymaps = {
+                  "af" = "@function.outer";
+                  "if" = "@function.inner";
+                  "ac" = "@class.outer";
+                  "ic" = "@class.inner";
+                  "aa" = "@parameter.outer";
+                  "ia" = "@parameter.inner";
+                  "ai" = "@conditional.outer";
+                  "ii" = "@conditional.inner";
+                  "al" = "@loop.outer";
+                  "il" = "@loop.inner";
+                };
+              };
+              swap = {
+                enable = true;
+                swap_next = {
+                  "<leader>sa" = "@parameter.inner";
+                };
+                swap_previous = {
+                  "<leader>sA" = "@parameter.inner";
+                };
+              };
+              move = {
+                enable = true;
+                set_jumps = true;
+                goto_next_start = {
+                  "]m" = "@function.outer";
+                  "]]" = "@class.outer";
+                };
+                goto_next_end = {
+                  "]M" = "@function.outer";
+                  "][" = "@class.outer";
+                };
+                goto_previous_start = {
+                  "[m" = "@function.outer";
+                  "[[" = "@class.outer";
+                };
+                goto_previous_end = {
+                  "[M" = "@function.outer";
+                  "[]" = "@class.outer";
+                };
+              };
+            };
+          };
 
           binds = {
             whichKey.enable = true;
@@ -533,29 +599,65 @@ in {
           # ── Comments ─────────────────────────────────────────────────────────
           comments.comment-nvim.enable = true;
 
+          # ── avante repo-map UTF-8 guard ──────────────────────────────────────
+          # avante's `@codebase` repo map parses files with a native Rust
+          # function (`avante_repo_map.stringify_definitions`, via mlua) that
+          # raises a hard error on any content that isn't valid UTF-8:
+          #   bad argument #2 … invalid utf-8 sequence … from index N
+          # The initial map build runs through ripgrep and so honours
+          # .gitignore, but the repo map ALSO installs a recursive fs_event
+          # watcher (repo_map.lua) that re-parses every changed same-extension
+          # file and respects neither .gitignore NOR repo_map.ignore_patterns.
+          # In a Python project that means gitignored, non-UTF-8 files (e.g.
+          # localisation blobs / compiled artifacts under .venv) reach the
+          # parser and abort it. Wrap the function so unparseable files are
+          # skipped (returns "") instead of crashing. The guard is installed on
+          # the User AvanteInputSubmitted event, which fires before any
+          # repo-map call — both the build and the watcher it creates then use
+          # the wrapped function.
+          # luaConfigPost = ''
+          #   vim.api.nvim_create_autocmd("User", {
+          #     pattern = "AvanteInputSubmitted",
+          #     desc = "Guard avante repo-map parser against non-UTF-8 files",
+          #     callback = function()
+          #       local ok, core = pcall(require, "avante_repo_map")
+          #       if not ok or type(core) ~= "table" or core.__nvf_utf8_guard then
+          #         return
+          #       end
+          #       local orig = core.stringify_definitions
+          #       if type(orig) ~= "function" then return end
+          #       core.stringify_definitions = function(lang, source)
+          #         local ok2, res = pcall(orig, lang, source)
+          #         return ok2 and res or ""
+          #       end
+          #       core.__nvf_utf8_guard = true
+          #     end,
+          #   })
+          # '';
+
           # ── Alpha dashboard: patch button hints to use "," leader ────────────
           # nvf sets up alpha with the upstream "dashboard" theme which
           # hardcodes "SPC" in every button label. We re-run alpha.setup inside
           # vim.schedule so it fires after VimEnter (and thus after lz.n has
           # already loaded alpha), replacing the button shortcuts with ",".
-          luaConfigPost = ''
-            vim.schedule(function()
-              local ok_a, alpha     = pcall(require, "alpha")
-              local ok_d, dashboard = pcall(require, "alpha.themes.dashboard")
-              if not (ok_a and ok_d) then return end
-
-              dashboard.section.buttons.val = {
-                dashboard.button(", <space>", "  Find file",    ":Telescope find_files<CR>"),
-                dashboard.button(",/",        "  Live grep",     ":Telescope live_grep<CR>"),
-                dashboard.button(",o",        "  File tree",     ":Neotree toggle<CR>"),
-                dashboard.button(",gs",       "  Git status",    ":Neogit<CR>"),
-                dashboard.button(",sl",       "  Load session",  ":SessionManager load_last_session<CR>"),
-                dashboard.button("q",         "  Quit",          ":qa<CR>"),
-              }
-
-              alpha.setup(dashboard.opts)
-            end)
-          '';
+          # luaConfigPost = ''
+          #   vim.schedule(function()
+          #     local ok_a, alpha     = pcall(require, "alpha")
+          #     local ok_d, dashboard = pcall(require, "alpha.themes.dashboard")
+          #     if not (ok_a and ok_d) then return end
+          #
+          #     dashboard.section.buttons.val = {
+          #       dashboard.button(", <space>", "  Find file",    ":Telescope find_files<CR>"),
+          #       dashboard.button(",/",        "  Live grep",     ":Telescope live_grep<CR>"),
+          #       dashboard.button(",o",        "  File tree",     ":Neotree toggle<CR>"),
+          #       dashboard.button(",gs",       "  Git status",    ":Neogit<CR>"),
+          #       dashboard.button(",sl",       "  Load session",  ":SessionManager load_last_session<CR>"),
+          #       dashboard.button("q",         "  Quit",          ":qa<CR>"),
+          #     }
+          #
+          #     alpha.setup(dashboard.opts)
+          #   end)
+          # '';
         };
       };
     };

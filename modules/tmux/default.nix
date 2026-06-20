@@ -1,11 +1,17 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 let
   cfg = config.modules.tmux;
   currentUser = config.people.myself;
 
   # we need to import the scripts for the sesseioniser
-  tmux-sessioniser = pkgs.writeShellScriptBin "tmux-sessioniser"
-    (builtins.readFile ./tmux-sessioniser);
+  tmux-sessioniser = pkgs.writeShellScriptBin "tmux-sessioniser" (
+    builtins.readFile ./tmux-sessioniser
+  );
 
   kanagawa = pkgs.tmuxPlugins.mkTmuxPlugin {
     pluginName = "kanagawa";
@@ -27,7 +33,9 @@ let
       sha256 = "0f9xwlnjwsy7b8w76j5pg9hd0s01vwry574jfg4pi2lc3hbjkab5";
     };
   };
-in with lib; {
+in
+with lib;
+{
   options.modules.tmux = {
     enable = mkOption {
       type = types.bool;
@@ -57,6 +65,7 @@ in with lib; {
           historyLimit = 100000;
           keyMode = "vi";
           escapeTime = 10;
+          mouse = true;
           plugins = with pkgs; [
             # must be before continuum edits right status bar
             # {
